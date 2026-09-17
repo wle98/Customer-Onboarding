@@ -1,5 +1,7 @@
 package com.example.Customer_Onboarding.Service;
 
+import com.example.Customer_Onboarding.DTO.CustomerRequest;
+import com.example.Customer_Onboarding.DTO.CustomerResponse;
 import com.example.Customer_Onboarding.DTO.StatusHistoryResponse;
 import com.example.Customer_Onboarding.Entity.Customer;
 import com.example.Customer_Onboarding.Entity.OnboardingStatus;
@@ -22,11 +24,21 @@ public class CustomerService {
     @Autowired
     private OnboardingStatusHistoryRepository statusHistoryRepository;
 
-    public Customer createCustomer(Customer customer) {
-        if (customerRepository.existsByEmail(customer.getEmail())) {
-            throw new DuplicateCustomerException("Customer with email " + customer.getEmail() + " already exists");
+    public CustomerResponse createCustomer(CustomerRequest request) {
+        if (customerRepository.existsByEmail(request.getEmail())) {
+            throw new DuplicateCustomerException("Customer with email " + request.getEmail() + " already exists");
         }
-        return customerRepository.save(customer);
+        Customer customer = new Customer();
+        customer.setName(request.getName());
+        customer.setEmail(request.getEmail());
+        customer.setPhone(request.getPhone());
+        customer.setAddress(request.getAddress());
+        customer.setBusinessType(request.getBusinessType());
+        return toResponse(customerRepository.save(customer));
+    }
+
+    public CustomerResponse getCustomerResponseById(UUID id) {
+        return toResponse(getCustomerById(id));
     }
 
     public Customer getCustomerById(UUID id) {
@@ -34,17 +46,20 @@ public class CustomerService {
                 .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + id));
     }
 
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
+    public List<CustomerResponse> getAllCustomers() {
+        return customerRepository.findAll()
+                .stream()
+                .map(this::toResponse)
+                .toList();
     }
 
-    public Customer updateCustomer(UUID id, Customer updatedCustomer) {
+    public CustomerResponse updateCustomer(UUID id, CustomerRequest request) {
         Customer existing = getCustomerById(id);
-        existing.setName(updatedCustomer.getName());
-        existing.setPhone(updatedCustomer.getPhone());
-        existing.setAddress(updatedCustomer.getAddress());
-        existing.setBusinessType(updatedCustomer.getBusinessType());
-        return customerRepository.save(existing);
+        existing.setName(request.getName());
+        existing.setPhone(request.getPhone());
+        existing.setAddress(request.getAddress());
+        existing.setBusinessType(request.getBusinessType());
+        return toResponse(customerRepository.save(existing));
     }
 
     public void deleteCustomer(UUID id) {
@@ -54,13 +69,12 @@ public class CustomerService {
 
     // status
 
-    public Customer updateStatus(UUID id, OnboardingStatus newStatus, String changedBy) {
+    public CustomerResponse updateStatus(UUID id, OnboardingStatus newStatus, String changedBy) {
         Customer customer = getCustomerById(id);
         OnboardingStatus oldStatus = customer.getStatus();
 
-        // prevents logging in old status and new status if they are the same
         if (oldStatus == newStatus) {
-            return customer;
+            return toResponse(customer);
         }
 
         customer.setStatus(newStatus);
@@ -73,7 +87,7 @@ public class CustomerService {
         history.setChangedBy(changedBy);
         statusHistoryRepository.save(history);
 
-        return customer;
+        return toResponse(customer);
     }
 
     public List<StatusHistoryResponse> getStatusHistory(UUID id) {
@@ -89,6 +103,23 @@ public class CustomerService {
                         h.getChangedAt()
                 ))
                 .toList();
+    }
+
+    // toResponse
+
+    private CustomerResponse toResponse(Customer customer) {
+        return new CustomerResponse(
+                customer.getId(),
+                customer.getName(),
+                customer.getEmail(),
+                customer.getPhone(),
+                customer.getAddress(),
+                customer.getBusinessType(),
+                customer.getRegistrationDate(),
+                customer.getStatus(),
+                customer.getCreatedAt(),
+                customer.getUpdatedAt()
+        );
     }
 
 }

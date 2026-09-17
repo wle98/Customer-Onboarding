@@ -1,5 +1,7 @@
 package com.example.Customer_Onboarding.Controller;
 
+import com.example.Customer_Onboarding.DTO.CustomerRequest;
+import com.example.Customer_Onboarding.DTO.CustomerResponse;
 import com.example.Customer_Onboarding.DTO.StatusHistoryResponse;
 import com.example.Customer_Onboarding.DTO.StatusUpdateRequest;
 import com.example.Customer_Onboarding.Entity.Customer;
@@ -21,24 +23,24 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping
-    public ResponseEntity<Customer> createCustomer(@Valid @RequestBody Customer customer) {
-        Customer created = customerService.createCustomer(customer);
+    public ResponseEntity<CustomerResponse> createCustomer(@Valid @RequestBody CustomerRequest request) {
+        CustomerResponse created = customerService.createCustomer(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Customer> getCustomer(@PathVariable UUID id) {
-        return ResponseEntity.ok(customerService.getCustomerById(id));
+    public ResponseEntity<CustomerResponse> getCustomer(@PathVariable UUID id) {
+        return ResponseEntity.ok(customerService.getCustomerResponseById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Customer>> getAllCustomers() {
+    public ResponseEntity<List<CustomerResponse>> getAllCustomers() {
         return ResponseEntity.ok(customerService.getAllCustomers());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable UUID id, @Valid @RequestBody Customer customer) {
-        return ResponseEntity.ok(customerService.updateCustomer(id, customer));
+    public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable UUID id, @Valid @RequestBody CustomerRequest request) {
+        return ResponseEntity.ok(customerService.updateCustomer(id, request));
     }
 
     @DeleteMapping("/{id}")
@@ -50,7 +52,7 @@ public class CustomerController {
     // status
 
     @PatchMapping("/{id}/status")
-    public ResponseEntity<Customer> updateStatus(@PathVariable UUID id, @Valid @RequestBody StatusUpdateRequest request) {
+    public ResponseEntity<CustomerResponse> updateStatus(@PathVariable UUID id, @Valid @RequestBody StatusUpdateRequest request) {
         return ResponseEntity.ok(customerService.updateStatus(id, request.getNewStatus(), request.getChangedBy()));
     }
 
