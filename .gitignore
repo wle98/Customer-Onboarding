@@ -38,3 +38,6 @@ out/
 
 ### AWS ###
 application-prod.properties
+
+### Document Uploading ###
+uploads/

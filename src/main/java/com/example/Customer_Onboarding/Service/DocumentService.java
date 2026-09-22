@@ -35,6 +35,9 @@ public class DocumentService {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private NotificationService notificationService;
+
     @Value("${file.upload-dir}")
     private String uploadDir;
 
@@ -59,9 +62,11 @@ public class DocumentService {
         document.setFileType(file.getContentType());
         document.setFilePath(targetPath.toString());
         document.setFileSize(file.getSize());
-        document.setStatus(DocumentStatus.PENDING); // marked PENDING immediately. needs admin approval
 
-        return toResponse(documentRepository.save(document));
+        document.setStatus(DocumentStatus.PENDING);
+        Document saved = documentRepository.save(document);
+        notificationService.notifyDocumentPendingUpload(customer, saved.getFileName());
+        return toResponse(saved);
     }
 
     private void validateFile(MultipartFile file) {

@@ -22,6 +22,9 @@ public class OnboardingActivityService {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private NotificationService notificationService;
+
     public ActivityResponse createActivity(UUID customerId, ActivityRequest request) {
         Customer customer = customerService.getCustomerById(customerId);
 
@@ -32,7 +35,9 @@ public class OnboardingActivityService {
         activity.setDueDate(request.getDueDate());
         activity.setPriority(request.getPriority());
 
-        return toResponse(activityRepository.save(activity));
+        OnboardingActivity saved = activityRepository.save(activity);
+        notificationService.notifyActivityAssigned(customer, saved.getActivityName(), saved.getAssignedTo());
+        return toResponse(saved);
     }
 
     public List<ActivityResponse> getActivitiesByCustomer(UUID customerId) {

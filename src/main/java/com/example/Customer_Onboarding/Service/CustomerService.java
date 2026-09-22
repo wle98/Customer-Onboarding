@@ -24,6 +24,9 @@ public class CustomerService {
     @Autowired
     private OnboardingStatusHistoryRepository statusHistoryRepository;
 
+    @Autowired
+    private NotificationService notificationService;
+
     public CustomerResponse createCustomer(CustomerRequest request) {
         if (customerRepository.existsByEmail(request.getEmail())) {
             throw new DuplicateCustomerException("Customer with email " + request.getEmail() + " already exists");
@@ -85,7 +88,12 @@ public class CustomerService {
         history.setOldStatus(oldStatus);
         history.setNewStatus(newStatus);
         history.setChangedBy(changedBy);
+
         statusHistoryRepository.save(history);
+        notificationService.notifyStatusChanged(customer, oldStatus, newStatus);
+        if (newStatus == OnboardingStatus.COMPLETE) {
+            notificationService.notifyOnboardingCompleted(customer);
+        }
 
         return toResponse(customer);
     }
