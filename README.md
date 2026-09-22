@@ -13,7 +13,7 @@ A Spring Boot REST API for managing customer onboarding: profile creation, docum
 
 ## Live Deployment
 
-- Swagger UI: Link will change
+- Swagger UI: Link will change (Dynamic public IP)
 
 ## API Overview
 
