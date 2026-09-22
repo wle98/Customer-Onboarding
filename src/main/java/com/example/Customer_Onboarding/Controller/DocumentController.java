@@ -17,14 +17,14 @@ public class DocumentController {
     @Autowired
     private DocumentService documentService;
 
-    @PostMapping(value = "/api/customers/{customerId}/documents", consumes = "multipart/form-data")
+    @PostMapping(value = "/api/customers/documents/upload/{customerId}", consumes = "multipart/form-data")
     public ResponseEntity<DocumentResponse> uploadDocument(
             @PathVariable UUID customerId, @RequestParam("file") MultipartFile file) {
         DocumentResponse uploaded = documentService.uploadDocument(customerId, file);
         return ResponseEntity.status(HttpStatus.CREATED).body(uploaded);
     }
 
-    @GetMapping("/api/customers/{customerId}/documents")
+    @GetMapping("/api/customers/documents/{customerId}")
     public ResponseEntity<List<DocumentResponse>> getDocumentsByCustomer(@PathVariable UUID customerId) {
         return ResponseEntity.ok(documentService.getDocumentsByCustomer(customerId));
     }
@@ -34,7 +34,7 @@ public class DocumentController {
         return ResponseEntity.ok(documentService.getDocumentById(id));
     }
 
-    @DeleteMapping("/api/documents/{id}")
+    @DeleteMapping("/api/documents/delete/{id}")
     public ResponseEntity<Void> deleteDocument(@PathVariable UUID id) {
         documentService.deleteDocument(id);
         return ResponseEntity.noContent().build();

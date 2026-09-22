@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Step 2</title>
+</head>
+<body>
+
+<div class="documentUpload">
+    <nav>
+        <section><h2>Customer Onboarding</h2>
+            <p>Step 2 of 3 - Document Upload & Validation</p>
+        </section>
+        <button type="button">Notifications</button>
+        <button type="button">Account</button>
+    </nav>
+
+    <h3>Upload Required Documents</h3>
+    <p>Please upload the following mandatory documents to continue</p>
+    <section class="documentUploadMultiple">
+        <section class="documentUpload">
+            <h4>Identification Document</h4>
+            <p>Government ID / Passport / Diver's License</p>
+            <input type="file" class="governmentID" id="governmentID">
+        </section>
+
+        <section class="documentUpload">
+            <h4>Signed Agreement</h4>
+            <p>Customer Agreement / Contract Document</p>
+            <input type="file" class="agreement" id="agreement">
+        </section>
+    </section>
+
+    <section class="uploadRules">
+        <h3>Validation Rules</h3>
+        <h4>Allowed Formats</h4>
+        <ul>
+            <li>PDF</li>
+            <li>JPG</li>
+            <li>PNG</li>
+        </ul>
+        <hr>
+        <h4>Maximum File Size</h4>
+        <ul>
+            <li>10 MB per file</li>
+        </ul>
+
+        <section>
+            <h4>Important Notes</h4>
+            <p>Please ensure all documents are clear, legible, and not password protected.
+            All documents are securely encrypted</p>
+        </section>
+    </section>
+
+    <section class="uploadedDocuments">
+        <h4 class="documentList">Uploaded Documents (0/0)</h4>
+    </section>
+
+    <section class="Options">
+        <button type="button">Previous</button>
+        <button type="button">Save Draft</button>
+        <button type="button">Next</button>
+    </section>
+</div>
+
+</body>
+</html>

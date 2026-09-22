@@ -22,28 +22,28 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping
+    @PostMapping("/createCustomer")
     public ResponseEntity<CustomerResponse> createCustomer(@Valid @RequestBody CustomerRequest request) {
         CustomerResponse created = customerService.createCustomer(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getSingle/{id}")
     public ResponseEntity<CustomerResponse> getCustomer(@PathVariable UUID id) {
         return ResponseEntity.ok(customerService.getCustomerResponseById(id));
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<CustomerResponse>> getAllCustomers() {
         return ResponseEntity.ok(customerService.getAllCustomers());
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable UUID id, @Valid @RequestBody CustomerRequest request) {
         return ResponseEntity.ok(customerService.updateCustomer(id, request));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable UUID id) {
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
@@ -51,12 +51,12 @@ public class CustomerController {
 
     // status
 
-    @PatchMapping("/{id}/status")
+    @PatchMapping("/status/{id}")
     public ResponseEntity<CustomerResponse> updateStatus(@PathVariable UUID id, @Valid @RequestBody StatusUpdateRequest request) {
         return ResponseEntity.ok(customerService.updateStatus(id, request.getNewStatus(), request.getChangedBy()));
     }
 
-    @GetMapping("/{id}/status-history")
+    @GetMapping("/status-history/{id}")
     public ResponseEntity<List<StatusHistoryResponse>> getStatusHistory(@PathVariable UUID id) {
         return ResponseEntity.ok(customerService.getStatusHistory(id));
     }

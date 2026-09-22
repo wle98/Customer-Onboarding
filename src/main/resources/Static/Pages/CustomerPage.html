@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+</head>
+<body>
+
+<div>
+
+    <section class="CreationForm">
+        <h2>Customer Creation</h2>
+
+        <script src="../Customer/customerCreate.js"></script>
+        <form>
+            <section class="customerID">
+                <label for="customerName">Customer Name</label>
+                <input type="text" name="customerName" id="customerName">
+            </section>
+
+            <section class="contactInfo">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" name="phone" id="phone">
+            </section>
+
+            <section class="address">
+                <label for="address">Address</label>
+                <input type="text" name="address" id="address">
+            </section>
+
+            <section class="registration">
+                <label for="businessType">Business Type</label>
+                <select type="text" name="businessType" id="businessType"></select>
+            </section>
+
+            <button onclick="customerCreate(customerName,email,phone,address,businessType)">Save</button>
+        </form>
+    </section>
+
+    <section class="DeleteForm">
+        <h2>Delete Customer</h2>
+        <script src="../Customer/customerDelete.js"></script>
+        <form>
+            <label for="deleteID">Customer ID</label>
+            <input type="text" name="deleteID" id="deleteID">
+            <button onclick="customerDelete(deleteID)">Delete</button>
+        </form>
+    </section>
+
+    <section class="getAll">
+        <h2>Get All Customers</h2>
+        <button onclick="customerGetAll()">Get All Customers</button>
+        <p id="customerList"></p>
+        <script src="../Customer/customerGetAll.js"></script>
+    </section>
+
+    <section class="getOne">
+        <h2>Get One Customer</h2>
+        <label for="customerID">Customer ID</label>
+        <input type="text" name="customerID" id="customerID">
+        <button onclick="customerGetSingle(customerID)">Get Customer</button>
+        <p id="customer"></p>
+        <script src="../Customer/customerGetSingle.js"></script>
+    </section>
+
+    <section class="updateCustomer">
+        <h2>Update Customer</h2>
+        <form>
+            <section class="customerID">
+                <label for="updateName">Customer Name</label>
+                <input type="text" name="updateName" id="updateName">
+
+                <label for="updateID">ID</label>
+                <input type="text" name="updateID" id="updateID">
+            </section>
+
+            <section class="contactInfo">
+                <label for="updateEmail">Email</label>
+                <input type="email" name="updateEmail" id="updateEmail">
+
+                <label for="updatePhone">Phone Number</label>
+                <input type="tel" name="updatePhone" id="updatePhone">
+            </section>
+
+            <section class="address">
+                <label for="updateAddress">Address</label>
+                <input type="text" name="updateAddress" id="updateAddress">
+            </section>
+
+            <section class="registration">
+                <label for="updateType">Business Type</label>
+                <select type="text" name="updateType" id="updateType"></select>
+            </section>
+
+            <button onclick="customerUpdate(updateID,updateName,updateEmail,updatePhone,updateAddress,updateType)">Save</button>
+            <p id ="update"></p>
+            <script src="../Customer/customerUpdate.js"></script>
+        </form>
+    </section>
+
+    <section class="status">
+        <h2>Status</h2>
+        <label for="statusID">Customer ID</label>
+        <input type="text" name="statusID" id="statusID">
+
+        <label for="statusType">Status</label>
+        <select type="text" name="statusType" id="statusType">Status
+            <option value="NEW">New</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="HOLD">Hold</option>
+            <option value="COMPLETE">Complete</option>
+            <option value="REJECTED">Rejected</option>
+        </select>
+
+        <label for="statusName">Status Name</label>
+        <input type="text" name="statusName" id="statusName">
+
+        <button onclick="customerStatus(statusID,statusType,statusName)">Status</button>
+        <p id="customerStatus"></p>
+        <script src="../Customer/customerStatus.js"></script>
+    </section>
+
+    <section class="statusHistory">
+        <h2>Status History</h2>
+        <label for="statusHistoryID">Status ID</label>
+        <input type="text" name="statusHistoryID" id="statusHistoryID">
+
+        <button onclick="customerStatusHistory(statusHistoryID)">Check Status</button>
+        <p id="statusHistory"></p>
+        <script src="../Customer/customerStatusHistory.js"></script>
+    </section>
+
+</div>
+
+</body>
+</html>

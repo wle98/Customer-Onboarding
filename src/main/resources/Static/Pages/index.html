@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Step 1</title>
+</head>
+<body>
+
+<div class="dataInput">
+    <nav>
+        <section><h2>Customer Onboarding</h2>
+            <p>Step 1 of 3 - Customer Information</p>
+        </section>
+        <button type="button">Notifications</button>
+        <button type="button">Account</button>
+    </nav>
+
+    <h3>Customer Information</h3>
+    <p>Please provide the basic details of the customer</p>
+    <hr>
+
+    <script src="Customer/customerCreate.js"></script>
+    <form action="javascript:customerCreate(customerName,email,phone,address,businessType)">
+        <section class="customerID">
+<!--            <label for="customerID">Customer ID</label>-->
+<!--            <input type="text" name="customerID" id="customerID">-->
+
+            <label for="customerName">Customer Name</label>
+            <input type="text" name="customerName" id="customerName">
+        </section>
+
+        <section class="contactInfo">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" id="phone">
+        </section>
+
+        <section class="address">
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address">
+        </section>
+
+        <section class="registration">
+            <label for="businessType">Business Type</label>
+            <select type="text" name="businessType" id="businessType"></select>
+
+<!--            <label for="registrationDate">Registration Date</label>-->
+<!--            <input type="date" name="registrationDate" id="registrationDate">-->
+        </section>
+
+        <p id="response"></p>
+        <hr>
+        <section class="options">
+            <button onclick="customerCreate(customerName,email,phone,address,businessType)">Save</button>
+            <button type="button">Cancel</button>
+            <button type="button">Next</button>
+        </section>
+    </form>
+</div>
+
+</body>
+</html>

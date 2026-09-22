@@ -20,13 +20,13 @@ public class OnboardingActivityController {
     @Autowired
     private OnboardingActivityService activityService;
 
-    @PostMapping("/api/customers/{customerId}/activities")
+    @PostMapping("/api/customers/activities/create/{customerId}")
     public ResponseEntity<ActivityResponse> createActivity(
             @PathVariable UUID customerId, @Valid @RequestBody ActivityRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(activityService.createActivity(customerId, request));
     }
 
-    @GetMapping("/api/customers/{customerId}/activities")
+    @GetMapping("/api/customers/activities/{customerId}")
     public ResponseEntity<List<ActivityResponse>> getActivitiesByCustomer(@PathVariable UUID customerId) {
         return ResponseEntity.ok(activityService.getActivitiesByCustomer(customerId));
     }
@@ -36,19 +36,19 @@ public class OnboardingActivityController {
         return ResponseEntity.ok(activityService.getActivityById(id));
     }
 
-    @PutMapping("/api/activities/{id}")
+    @PutMapping("/api/activities/update/{id}")
     public ResponseEntity<ActivityResponse> updateActivity(
             @PathVariable UUID id, @Valid @RequestBody ActivityRequest request) {
         return ResponseEntity.ok(activityService.updateActivity(id, request));
     }
 
-    @PatchMapping("/api/activities/{id}/status")
+    @PatchMapping("/api/activities/status/updateStatus/{id}")
     public ResponseEntity<ActivityResponse> updateStatus(
             @PathVariable UUID id, @RequestParam ActivityStatus status) {
         return ResponseEntity.ok(activityService.updateActivityStatus(id, status));
     }
 
-    @DeleteMapping("/api/activities/{id}")
+    @DeleteMapping("/api/activities/delete/{id}")
     public ResponseEntity<Void> deleteActivity(@PathVariable UUID id) {
         activityService.deleteActivity(id);
         return ResponseEntity.noContent().build();

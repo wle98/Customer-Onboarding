@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Activities</title>
+</head>
+<body>
+
+<div>
+
+  <section class="getActivities">
+    <h2>Get Customer Activities</h2>
+    <label for="customerID">Customer Id</label>
+    <input type="text" name="customerID" id="customerID">
+    <button onclick="getCustomerActivity(customerID)">Get Activities</button>
+    <p id="getActivities"></p>
+
+    <script src="../Activities/getCustomerActivity.js"></script>
+  </section>
+
+  <section class="updateActivity">
+    <h2>Update Activity</h2>
+    <form id="updateActivity">
+      <label for="activityIDUpdate">Activity Id</label>
+      <input type="text" name="activityIDUpdate" id="activityIDUpdate">
+
+      <label for="activityNameUpdate">Activity Name</label>
+      <input type="text" name="activityNameUpdate" id="activityNameUpdate">
+
+      <label for="activityAssignedToUpdate">Assigned To</label>
+      <input type="text" name="activityAssignedToUpdate" id="activityAssignedToUpdate">
+
+      <label for="DueDateUpdate">Duedate</label>
+      <input type="date" name="DueDateUpdate" id="DueDateUpdate">
+
+      <label for="activityPriorityUpdate">Priority</label>
+      <select name="activityPriorityUpdate" id="activityPriorityUpdate">
+        <option value="LOW">Low</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="HIGH">High</option>
+      </select>
+    </form>
+
+    <button onclick="updateActivity(activityIDUpdate,activityNameUpdate,activityAssignedToUpdate,DueDateUpdate,activityPriorityUpdate)">Update Activity</button>
+    <script src="../Activities/updateActivity.js"></script>
+  </section>
+
+  <section class="deleteActivity">
+    <h2>Delete Activity</h2>
+    <label for="deleteID">Activity ID</label>
+    <input type="text" name="deleteID" id="deleteID">
+
+    <button onclick="deleteActivity(deleteID)">Delete Activity</button>
+    <script src="../Activities/deleteActivity.js"></script>
+  </section>
+
+  <section class="getActivity">
+    <h2>Get Activity By ID</h2>
+    <label for="referenceActivityID">Activity Id</label>
+    <input type="text" name="referenceActivityID" id="referenceActivityID">
+    <button onclick="getActivity(referenceActivityID)">Get Activity</button>
+    <p id="getActivityBy"></p>
+
+    <script src="../Activities/getActivity.js"></script>
+  </section>
+
+  <section class="addCustomerActivity">
+    <h2>Add Customer Activity</h2>
+    <form id="addCustomerActivityForm">
+      <label for="newCustomerID">Customer ID</label>
+      <input type="text" name="customer ID" id="newCustomerID">
+
+      <label for="activityName">Activity</label>
+      <input type="text" name="activity Name" id="activityName">
+
+      <label for="assignedTo">Assigned To</label>
+      <input type="text" name="assigned To" id="assignedTo">
+
+      <label for="duedate">Duedate</label>
+      <input type="date" name="due date" id="duedate">
+
+      <label for="priority">Priority</label>
+      <select name="priority" id="priority">
+        <option value="LOW">Low</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="HIGH">High</option>
+      </select>
+    </form>
+
+    <button onclick="addCustomerActivity(newCustomerID,activityName,assignedTo,duedate,priority)">Add</button>
+    <script src="../Activities/addCustomerActivity.js"></script>
+  </section>
+
+  <section class="changeCustomerActivityStatus">
+    <h2>Change Customer Activity Status</h2>
+
+    <form id="changeCustomerActivityStatusForm">
+      <label for="activityID">Activity ID</label>
+      <input type="text" name="activity ID" id="activityID">
+
+      <label for="activityStatus">Activity Status</label>
+      <select name="activity Status" id="activityStatus">Status
+        <option value="PENDING">Pending</option>
+        <option value="IN_PROGRESS">In Progress</option>
+        <option value="COMPLETED">Completed</option>
+        <option value="OVERDUE">Overdue</option>
+      </select>
+
+      <button onclick="changeCustomerActivityStatus(activityID,activityStatus)">Change</button>
+      <script src="../Activities/changeCustomerActivityStatus.js"></script>
+    </form>
+
+  </section>
+
+</div>
+
+</body>
+</html>

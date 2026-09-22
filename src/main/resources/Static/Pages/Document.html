@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+
+    <section class="getCustomerDocuments">
+        <h2>Customer's Documents</h2>
+    </section>
+
+    <section class="uploadDocuments">
+        <h2>Upload Documents</h2>
+        <label for="customerID">Customer ID</label>
+        <input type="text" name="customerID" id="customerID">
+
+        <label for="document">Document</label>
+        <input type="file" name="document" id="document">
+        <button onclick="documentUpload(customerID)">Upload</button>
+
+        <script src="../Document/documentUpload.js"></script>
+    </section>
+
+    <section class="getDocuments">
+        <h2>Get Documents</h2>
+    </section>
+
+    <section class="deleteDocuments">
+        <h2>Delete Documents</h2>
+    </section>
+
+</div>
+
+</body>
+</html>
