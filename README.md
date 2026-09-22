@@ -1,4 +1,4 @@
-# Customer Onboarding Backend
+# Customer Onboarding
 
 A Spring Boot REST API for managing customer onboarding: profile creation, document upload/validation, onboarding activity tracking, and status history.
 
