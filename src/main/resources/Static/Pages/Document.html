@@ -10,26 +10,45 @@
 
     <section class="getCustomerDocuments">
         <h2>Customer's Documents</h2>
+        <label for="customerIDReturn">Customer ID</label>
+        <input type="text" name="customerIDReturn" id="customerIDReturn">
+        <button onclick="documentbyCustomer(customerIDReturn)">View</button>
+        <p id="customerFileReturn"></p>
+
+    <script src="../Document/documentbyCustomer.js"></script>
     </section>
 
     <section class="uploadDocuments">
         <h2>Upload Documents</h2>
-        <label for="customerID">Customer ID</label>
-        <input type="text" name="customerID" id="customerID">
+        <form id="uploadForm">
+            <label for="customerID">Customer ID</label>
+            <input type="text" name="customerID" id="customerID">
 
-        <label for="document">Document</label>
-        <input type="file" name="document" id="document">
-        <button onclick="documentUpload(customerID)">Upload</button>
+            <label for="document">Document</label>
+            <input type="file" name="document" id="document">
+            <button type="submit" onclick="documentUpload(customerID)">Upload</button>
+        </form>
 
         <script src="../Document/documentUpload.js"></script>
     </section>
 
     <section class="getDocuments">
         <h2>Get Documents</h2>
+        <label for="returnID">Document ID</label>
+        <input type="text" name="returnID" id="returnID">
+        <button onclick="documentbyID(returnID)">View</button>
+        <p id="returnResult"></p>
+
+        <script src="../Document/documentbyID.js"></script>
     </section>
 
     <section class="deleteDocuments">
         <h2>Delete Documents</h2>
+        <label for="deleteID">Document ID</label>
+        <input type="text" name="deleteID" id="deleteID">
+        <button onclick="documentDelete(deleteID)">Delete</button>
+
+        <script src="../Document/documentDelete.js"></script>
     </section>
 
 </div>
