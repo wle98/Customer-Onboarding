@@ -11,13 +11,14 @@
         <section><h2>Customer Onboarding</h2>
             <p>Step 2 of 3 - Document Upload & Validation</p>
         </section>
-        <button type="button">Notifications</button>
-        <button type="button">Account</button>
+<!--        <button type="button">Notifications</button>-->
+<!--        <button type="button">Account</button>-->
     </nav>
 
     <h3>Upload Required Documents</h3>
     <p>Please upload the following mandatory documents to continue</p>
     <section class="documentUploadMultiple">
+        <input type="hidden" id="response">
         <section class="documentUpload">
             <h4>Identification Document</h4>
             <p>Government ID / Passport / Diver's License</p>
@@ -57,9 +58,9 @@
     </section>
 
     <section class="Options">
-        <button type="button">Previous</button>
+        <button onclick="window.location.href='index.html'">Previous</button>
         <button type="button">Save Draft</button>
-        <button type="button">Next</button>
+        <button onclick="window.location.href='Page3.html'">Next</button>
     </section>
 </div>
 
