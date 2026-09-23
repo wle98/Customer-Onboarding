@@ -6,7 +6,7 @@ async function customerStatus(customerId,statusType,statusName){
 
     const response = {"newStatus": Type, "changedBy": Name};
 
-    fetch('http://localhost:8080/api/customers/status/' + ID, {
+    fetch('/api/customers/status/' + ID, {
         method: 'PATCH',
         body: JSON.stringify(response),
         headers: {

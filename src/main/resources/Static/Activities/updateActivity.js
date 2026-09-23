@@ -8,7 +8,7 @@ async function updateActivity(activityId,activityName,assignedTo,dueDate,priorit
 
     const response = {"activityName": Name, "assignedTo": AssignedTo, "dueDate": Date, "priority": Priority};
 
-    fetch('http://localhost:8080/api/activities/update/' + ID, {
+    fetch('/api/activities/update/' + ID, {
         method: 'PUT',
         body: JSON.stringify(response),
         headers: {

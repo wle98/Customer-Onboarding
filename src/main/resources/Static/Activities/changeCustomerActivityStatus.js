@@ -4,7 +4,7 @@ async function changeCustomerActivityStatus(activityID,activityStatus) {
     const formdata = new FormData();
     formdata.append('status',activityStatus.value);
 
-    fetch('http://localhost:8080/api/activities/status/updateStatus/'+ID,{
+    fetch('/api/activities/status/updateStatus/'+ID,{
         method: 'PATCH',
         body: formdata
     })

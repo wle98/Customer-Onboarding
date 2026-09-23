@@ -8,7 +8,7 @@ async function customerCreate(name, email, phone, address, businessType) {
 
     const response = {"name": Name, "email": Email, "phone":Phone, "address":Address, "businessType":BusinessType};
 
-    fetch('http://localhost:8080/api/customers/createCustomer', {
+    fetch('/api/customers/createCustomer', {
         method: 'POST',
         body: JSON.stringify(response),
         headers: {

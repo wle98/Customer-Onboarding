@@ -2,7 +2,7 @@ async function documentbyCustomer(customerID) {
 
     const ID = customerID.value;
 
-    fetch('http://localhost:8080/api/customers/documents/' + ID, {
+    fetch('/api/customers/documents/' + ID, {
         method: 'GET',
     })
         .then((response) => {

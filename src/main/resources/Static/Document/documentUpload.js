@@ -5,7 +5,7 @@ async function documentUpload(customerID,documentID){
     formdata.append('file',document.getElementById(documentID).files[0]);
 
 
-    fetch('http://localhost:8080/api/customers/documents/upload/'+ID,{
+    fetch('/api/customers/documents/upload/'+ID,{
         method:'POST',
         body: formdata})
         .then(response => response.json())

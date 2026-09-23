@@ -2,7 +2,7 @@ async function getCustomerActivity(customerID) {
 
     const ID = customerID.value;
 
-    fetch('http://localhost:8080/api/customers/activities/'+ID)
+    fetch('/api/customers/activities/'+ID)
         .then((response) => {
             return response.text();
         })

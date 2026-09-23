@@ -8,7 +8,7 @@ async function addCustomerActivity(customerID,activityName,assignedTo,duedate,pr
 
     const response = {"activityName": Activity, "assignedTo": Assignedto, "dueDate": Duedate, "priority": Priority};
 
-    fetch('http://localhost:8080/api/customers/activities/create/' + ID, {
+    fetch('/api/customers/activities/create/' + ID, {
         method: 'POST',
         body: JSON.stringify(response),
         headers: {

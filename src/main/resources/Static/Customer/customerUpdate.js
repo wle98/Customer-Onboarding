@@ -8,7 +8,7 @@ async function customerUpdate(id,name, email, phone, address, businessType){
 
     const response = {"name": Name, "email": Email, "phone":Phone, "address":Address, "businessType":BusinessType};
 
-    fetch('http://localhost:8080/api/customers/update/' + ID, {
+    fetch('/api/customers/update/' + ID, {
         method: 'PUT',
         body: JSON.stringify(response),
         headers: {

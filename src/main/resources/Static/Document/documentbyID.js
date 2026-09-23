@@ -2,7 +2,7 @@ async function documentbyID(documentID) {
 
     const ID = documentID.value;
 
-    fetch('http://localhost:8080/api/documents/' + ID, {
+    fetch('/api/documents/' + ID, {
         method: 'GET',
     })
         .then((response) => {

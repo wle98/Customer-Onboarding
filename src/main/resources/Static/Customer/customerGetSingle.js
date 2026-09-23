@@ -2,7 +2,7 @@ async function customerGetSingle(customerId){
 
     const ID = customerId.value;
 
-    fetch('http://localhost:8080/api/customers/getSingle/' + ID, {
+    fetch('/api/customers/getSingle/' + ID, {
         method: 'GET',
     })
         .then((response) => {

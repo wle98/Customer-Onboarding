@@ -2,7 +2,7 @@ async function customerStatusHistory(customerID) {
 
     const ID = customerID.value;
 
-    fetch('http://localhost:8080/api/customers/status-history/' + ID, {
+    fetch('/api/customers/status-history/' + ID, {
         method: 'GET',
     })
         .then((response) => {

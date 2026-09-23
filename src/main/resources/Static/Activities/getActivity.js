@@ -2,7 +2,7 @@ async function getActivity(activityId) {
 
     const ID = activityId.value;
 
-    fetch('http://localhost:8080/api/activities/'+ID)
+    fetch('/api/activities/'+ID)
         .then((response) => {
             return response.text();
         })

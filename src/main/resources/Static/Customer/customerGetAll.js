@@ -1,7 +1,7 @@
 async function customerGetAll(){
 
     try {
-        fetch('http://localhost:8080/api/customers/getAll')
+        fetch('/api/customers/getAll')
             .then((response) => {
                 return response.text();
             })
