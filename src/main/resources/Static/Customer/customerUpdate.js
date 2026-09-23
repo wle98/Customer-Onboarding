@@ -4,7 +4,7 @@ async function customerUpdate(id,name, email, phone, address, businessType){
     const Phone = phone.value;
     const Email = email.value;
     const Address = address.value;
-    const BusinessType = "string";
+    const BusinessType = businessType.value;
 
     const response = {"name": Name, "email": Email, "phone":Phone, "address":Address, "businessType":BusinessType};
 

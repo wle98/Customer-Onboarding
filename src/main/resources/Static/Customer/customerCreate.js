@@ -18,6 +18,7 @@ async function customerCreate(name, email, phone, address, businessType) {
         .then(response => response.json())
         .then(data => {
             document.getElementById('response').setAttribute('value', JSON.stringify(data.id));
+            localStorage.setItem('response', JSON.stringify(data.id));
         })
         .catch(error => console.log(error));
 }
