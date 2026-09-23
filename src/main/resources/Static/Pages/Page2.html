@@ -18,17 +18,24 @@
     <h3>Upload Required Documents</h3>
     <p>Please upload the following mandatory documents to continue</p>
     <section class="documentUploadMultiple">
+        <script src="../Document/documentUpload.js"></script>
         <input type="hidden" id="response">
+
+        <label for="customerID">Customer ID</label>
+        <input type="text" id="customerID" name="customerID">
+
         <section class="documentUpload">
             <h4>Identification Document</h4>
             <p>Government ID / Passport / Diver's License</p>
             <input type="file" class="governmentID" id="governmentID">
+            <button onclick="documentUpload(customerID,'governmentID')">Upload</button>
         </section>
 
         <section class="documentUpload">
             <h4>Signed Agreement</h4>
             <p>Customer Agreement / Contract Document</p>
             <input type="file" class="agreement" id="agreement">
+            <button onclick="documentUpload(customerID,'agreement')">Upload</button>
         </section>
     </section>
 

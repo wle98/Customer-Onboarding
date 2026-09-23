@@ -1,8 +1,8 @@
-async function documentUpload(customerID){
+async function documentUpload(customerID,documentID){
 
     const ID = customerID.value;
     const formdata = new FormData();
-    formdata.append('file',document.getElementById('document').files[0]);
+    formdata.append('file',document.getElementById(documentID).files[0]);
 
 
     fetch('http://localhost:8080/api/customers/documents/upload/'+ID,{
