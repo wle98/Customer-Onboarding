@@ -17,6 +17,14 @@
     <hr>
 
     <section class="managementOptions">
+        <script>
+            window.onload = function(){
+                const value = localStorage.getItem('response');
+                document.getElementById('responseID').setAttribute('value', value);
+            };
+        </script>
+        <input type="hidden" id="responseID">
+
         <section id="left">
             <section class="Customer"></section>
             <section class="onboardingStatusManagement">
