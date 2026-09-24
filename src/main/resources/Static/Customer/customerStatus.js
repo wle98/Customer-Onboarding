@@ -1,12 +1,13 @@
-async function customerStatus(customerId,statusType,statusName){
+function customerStatus(customerID,statusType,statusName){
 
-    const ID = customerId.value;
+    const ID = customerID.value;
+    const newID = ID.replaceAll('"','');
     const Type = statusType.value;
     const Name = statusName.value;
 
     const response = {"newStatus": Type, "changedBy": Name};
 
-    fetch('/api/customers/status/' + ID, {
+    fetch('/api/customers/status/' + newID, {
         method: 'PATCH',
         body: JSON.stringify(response),
         headers: {

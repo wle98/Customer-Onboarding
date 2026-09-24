@@ -14,8 +14,8 @@
         <script src="../Customer/customerCreate.js"></script>
         <form>
             <section class="customerID">
-                <label for="customerName">Customer Name</label>
-                <input type="text" name="customerName" id="customerName">
+                <label for="Name">Customer Name</label>
+                <input type="text" name="customerName" id="Name">
             </section>
 
             <section class="contactInfo">
@@ -36,7 +36,7 @@
                 <input type="text" name="businessType" id="businessType">
             </section>
 
-            <button onclick="customerCreate(customerName,email,phone,address,businessType)">Save</button>
+            <button onclick="customerCreate(Name,email,phone,address,businessType)">Save</button>
         </form>
     </section>
 
@@ -59,9 +59,12 @@
 
     <section class="getOne">
         <h2>Get One Customer</h2>
-        <label for="customerID">Customer ID</label>
-        <input type="text" name="customerID" id="customerID">
-        <button onclick="customerGetSingle(customerID)">Get Customer</button>
+        <label for="ID">Customer ID</label>
+        <input type="text" name="ID" id="ID">
+        <button onclick="customerGetSingle(ID)">Get Customer</button>
+        <p id="customerName"></p>
+        <p id="customerID"></p>
+        <p id="registrationDate"></p>
         <p id="customer"></p>
         <script src="../Customer/customerGetSingle.js"></script>
     </section>

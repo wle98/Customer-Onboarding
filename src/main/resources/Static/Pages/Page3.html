@@ -8,28 +8,62 @@
 <body>
 
 <div class="onboardingManagement">
+
+    <script>
+        window.onload = function(){
+            const value = localStorage.getItem('response');
+            document.getElementById('responseID').setAttribute('value', value);
+            customerGetSingle(responseID);
+            customerStatusHistory(responseID);
+        };
+    </script>
+    <input type="hidden" id="responseID">
+
+    <script src="../Customer/customerGetSingle.js"></script>
+    <script src="../Customer/customerStatus.js"></script>
+    <script src="../Customer/customerStatusHistory.js"></script>
+    <script src="../Activities/addCustomerActivity.js"></script>
+    <script src="../Activities/getCustomerActivity.js"></script>
+
     <nav>
         <section><h2>Customer Onboarding</h2>
             <p>Step 3 of 3 - Status Management & Activity Management</p>
         </section>
     </nav>
 
+    <section id="customer">
+        <p id="customerName"></p>
+        <p id="customerID"></p>
+        <p id="registrationDate"></p>
+    </section>
+
     <hr>
 
     <section class="managementOptions">
-        <script>
-            window.onload = function(){
-                const value = localStorage.getItem('response');
-                document.getElementById('responseID').setAttribute('value', value);
-            };
-        </script>
-        <input type="hidden" id="responseID">
-
         <section id="left">
-            <section class="Customer"></section>
             <section class="onboardingStatusManagement">
                 <h4>Onboarding Status Management</h4>
                 <p>Check progress through onboarding lifecycle.</p>
+                <section id="onboardingStatus">
+                    <section id="Status">
+                        <h4>Status</h4>
+                        <p id="StatusID"></p>
+                        <script></script>
+                    </section>
+                    <section id="changeStatus">
+                        <label for="statusType">Change Status</label>
+                        <select id="statusType">
+                            <option value="NEW">New</option>
+                            <option value="IN_PROGRESS">In Progress</option>
+                            <option value="HOLD">Hold</option>
+                            <option value="COMPLETE">Complete</option>
+                            <option value="REJECTED">Rejected</option>
+                        </select>
+                        <input type="hidden" id="admin" value="admin">
+                    </section>
+
+                    <button type="button" onclick="customerStatus(responseID,statusType,admin);customerStatusHistory(responseID)">Change Status</button>
+                </section>
             </section>
 
             <section class="onboardingActivityManagement">
@@ -42,6 +76,7 @@
             <section class="statusHistory">
                 <h4>Status History</h4>
                 <p>All status changes are logged.</p>
+                <p id="statusHistory"></p>
             </section>
 
             <section class="notifications">

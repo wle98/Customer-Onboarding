@@ -1,14 +1,18 @@
-async function customerGetSingle(customerId){
+async function customerGetSingle(customerID){
 
-    const ID = customerId.value;
+    const ID = customerID.value;
+    const newID = ID.replaceAll('"','');
 
-    fetch('/api/customers/getSingle/' + ID, {
+    fetch('/api/customers/getSingle/' + newID, {
         method: 'GET',
     })
         .then((response) => {
-            return response.text();
+            return response.json();
         })
         .then(data => {
-            document.getElementById('customer').innerHTML = JSON.stringify(data);
+            document.getElementById('customerName').innerHTML = JSON.stringify(data.name);
+            document.getElementById('customerID').innerHTML = JSON.stringify(data.id);
+            document.getElementById('registrationDate').innerHTML = JSON.stringify(data.registrationDate);
         })
+        .catch(error => console.log(error));
 }
