@@ -19,6 +19,7 @@
     </section>
 
     <section class="uploadDocuments">
+        <script src="../Document/documentUpload.js"></script>
         <h2>Upload Documents</h2>
         <form id="uploadForm">
             <label for="customerID">Customer ID</label>
@@ -26,14 +27,12 @@
 
             <label for="document">Document</label>
             <input type="file" name="document" id="document">
-            <button type="submit" onclick="documentUpload(customerID,'document')">Upload</button>
+            <button type='button' onclick="documentUpload(customerID,'document')">Upload</button>
         </form>
 
-        <div id="uploadedDocuments">
+        <section id="uploadedDocuments">
             <h4 class="documentList">Uploaded Documents (0/0)</h4>
-        </div>
-
-        <script src="../Document/documentUpload.js"></script>
+        </section>
     </section>
 
     <section class="getDocuments">

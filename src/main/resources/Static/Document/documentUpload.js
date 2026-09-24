@@ -11,9 +11,10 @@ function documentUpload(customerID,documentID){
         body: formdata})
         .then(response => response.json())
         .then(data => {
-            const newElement = document.createElement("p");
-            newElement.textContent = JSON.stringify(data);
-            document.getElementById('uploadedDocuments').insertAdjacentHTML('beforeend',JSON.stringify(data));
+            const para = document.createElement("p");
+            const node = document.createTextNode(JSON.stringify(data.fileName));
+            para.appendChild(node);
+            document.getElementById('uploadedDocuments').appendChild(para);
         })
         .catch(error => console.log(error));
 
