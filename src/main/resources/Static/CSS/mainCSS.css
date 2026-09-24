@@ -1,0 +1,57 @@
+body{
+    background-color: #e8eded;
+    width: 80%;
+    margin: 10px auto;
+    padding:20px;
+}
+
+div{
+    background-color: #ffffff;
+    width: 80%;
+    margin: 10px auto;
+    border-radius: 15px;
+    padding:20px;
+}
+
+section{
+    padding:5px;
+}
+
+.inputTwice, .managementOptions{
+    section{
+        padding:0;
+    }
+    display: flex;
+    justify-content: space-between;
+}
+
+.uploadSection{
+    .documentUpload, .uploadRules{
+        padding:5px;
+        border-radius: 15px;
+        border: 1px solid #ece8e8;
+    }
+    .documentUpload{
+        margin-bottom: 10px;
+    }
+    .uploadRules{
+        width: 33%;
+        hr{
+            width: 90%;
+        }
+        h4{
+            width: 180%;
+        }
+    }
+    display: flex;
+    justify-content: space-between;
+}
+
+.onboardingStatusManagement, .onboardingActivityManagement, .statusHistory, .notifications{
+    h4, p{
+        padding: 5px;
+    }
+    border-radius: 15px;
+    border: 1px solid #ece8e8;
+    margin-bottom: 10px;
+}

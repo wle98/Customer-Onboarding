@@ -1,4 +1,4 @@
-async function documentUpload(customerID,documentID){
+function documentUpload(customerID,documentID){
 
     const ID = customerID.value;
     const newID = ID.replaceAll('"','');
@@ -10,7 +10,11 @@ async function documentUpload(customerID,documentID){
         method:'POST',
         body: formdata})
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            const newElement = document.createElement("p");
+            newElement.textContent = JSON.stringify(data);
+            document.getElementById('uploadedDocuments').insertAdjacentHTML('beforeend',JSON.stringify(data));
+        })
         .catch(error => console.log(error));
 
 }

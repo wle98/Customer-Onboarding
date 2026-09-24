@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSS/mainCSS.css">
     <title>Step 2</title>
 </head>
 <body>
@@ -15,55 +16,60 @@
 
     <h3>Upload Required Documents</h3>
     <p>Please upload the following mandatory documents to continue</p>
-    <section class="documentUploadMultiple">
-        <script src="../Document/documentUpload.js"></script>
-        <script>
-            window.onload = function(){
-                const value = localStorage.getItem('response');
-                document.getElementById('responseID').setAttribute('value', value);
-            };
-        </script>
-        <input type="hidden" id="responseID">
 
-        <section class="documentUpload">
-            <h4>Identification Document</h4>
-            <p>Government ID / Passport / Diver's License</p>
-            <input type="file" class="governmentID" id="governmentID">
-            <button onclick="documentUpload(responseID,'governmentID')">Upload</button>
+    <hr>
+
+    <section class="uploadSection">
+        <section class="documentUploadMultiple">
+            <script src="../Document/documentUpload.js"></script>
+            <script>
+                window.onload = function(){
+                    const value = localStorage.getItem('response');
+                    document.getElementById('responseID').setAttribute('value', value);
+                };
+            </script>
+            <input type="hidden" id="responseID">
+
+            <section class="documentUpload">
+                <h4>Identification Document</h4>
+                <p>Government ID / Passport / Diver's License</p>
+                <input type="file" class="governmentID" id="governmentID">
+                <button onclick="documentUpload(responseID,'governmentID')">Upload</button>
+            </section>
+
+            <section class="documentUpload">
+                <h4>Signed Agreement</h4>
+                <p>Customer Agreement / Contract Document</p>
+                <input type="file" class="agreement" id="agreement">
+                <button onclick="documentUpload(responseID,'agreement')">Upload</button>
+            </section>
         </section>
 
-        <section class="documentUpload">
-            <h4>Signed Agreement</h4>
-            <p>Customer Agreement / Contract Document</p>
-            <input type="file" class="agreement" id="agreement">
-            <button onclick="documentUpload(responseID,'agreement')">Upload</button>
-        </section>
-    </section>
+        <section class="uploadRules">
+            <h3>Validation Rules</h3>
+            <h4>Allowed Formats</h4>
+            <ul>
+                <li>PDF</li>
+                <li>JPG</li>
+                <li>PNG</li>
+            </ul>
+            <hr>
+            <h4>Maximum File Size</h4>
+            <ul>
+                <li>10 MB per file</li>
+            </ul>
 
-    <section class="uploadRules">
-        <h3>Validation Rules</h3>
-        <h4>Allowed Formats</h4>
-        <ul>
-            <li>PDF</li>
-            <li>JPG</li>
-            <li>PNG</li>
-        </ul>
-        <hr>
-        <h4>Maximum File Size</h4>
-        <ul>
-            <li>10 MB per file</li>
-        </ul>
-
-        <section>
             <h4>Important Notes</h4>
             <p>Please ensure all documents are clear, legible, and not password protected.
-            All documents are securely encrypted</p>
+                All documents are securely encrypted</p>
         </section>
     </section>
 
     <section class="uploadedDocuments">
         <h4 class="documentList">Uploaded Documents (0/0)</h4>
     </section>
+
+    <hr>
 
     <section class="Options">
         <button onclick="window.location.href='index.html'">Previous</button>
