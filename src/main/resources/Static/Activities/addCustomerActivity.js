@@ -19,4 +19,5 @@ async function addCustomerActivity(customerID,activityName,assignedTo,duedate,pr
         .then(data => console.log(data))
         .catch(error => console.log(error));
 
+    location.reload();
 }
