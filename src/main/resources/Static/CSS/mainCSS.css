@@ -47,6 +47,11 @@ section{
     justify-content: space-between;
 }
 
+#customer{
+    display: flex;
+    justify-content: space-between;
+}
+
 .onboardingStatusManagement, .onboardingActivityManagement, .statusHistory, .notifications{
     h4, p{
         padding: 5px;

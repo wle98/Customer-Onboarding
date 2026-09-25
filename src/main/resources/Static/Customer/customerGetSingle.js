@@ -10,9 +10,9 @@ async function customerGetSingle(customerID){
             return response.json();
         })
         .then(data => {
-            document.getElementById('customerName').innerHTML = JSON.stringify(data.name);
-            document.getElementById('customerID').innerHTML = JSON.stringify(data.id);
-            document.getElementById('registrationDate').innerHTML = JSON.stringify(data.registrationDate);
+            document.getElementById('customerName').innerHTML = (JSON.stringify((data.name)).replaceAll('"',''));
+            document.getElementById('customerID').innerHTML = (JSON.stringify(data.id).replaceAll('"',''));
+            document.getElementById('registrationDate').innerHTML = (JSON.stringify(data.registrationDate).replaceAll('"',''));
         })
         .catch(error => console.log(error));
 }
