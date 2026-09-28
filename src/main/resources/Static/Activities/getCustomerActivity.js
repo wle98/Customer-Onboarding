@@ -10,7 +10,7 @@ async function getCustomerActivity(customerID) {
         })
         .then(data => {
             data.forEach(element => {const para = document.createElement("p");
-                const node = document.createTextNode("Activity: "+(JSON.stringify(element.activityName)).replaceAll('"',''));
+                const node = document.createTextNode("Activity: "+(JSON.stringify(element.activityName)).replaceAll('"','')+" ID: "+(JSON.stringify(element.id)).replaceAll('"',''));
                 para.appendChild(node);
                 document.getElementById('ActivityList').appendChild(para);});
             })
