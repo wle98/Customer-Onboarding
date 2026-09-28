@@ -66,7 +66,14 @@ section{
     }
 }
 
-.onboardingStatusManagement, .onboardingActivityManagement, .statusHistory, .notifications{
+#left, #right{
+    padding: 5px;
+}
+
+.onboardingStatusManagement, .onboardingActivityManagement, .statusHistory, .notificationTab{
+    hr{
+        width: 90%;
+    }
     h4, p{
         padding: 5px;
     }

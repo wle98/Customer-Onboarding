@@ -54,6 +54,7 @@
                 <p>Assign and Delete onboarding tasks</p>
 
                 <section id="deleteActivity">
+                    <h3>Delete Customer Activity</h3>
                     <label for="deleteID"></label>
                     <input type="text" id="deleteID" placeholder="Enter ID">
                     <button class="update" onclick="deleteActivity(deleteID)">Delete Task</button>
@@ -91,13 +92,14 @@
         </section>
 
         <section id="right">
-            <section id="statusHistory">
+            <section class="statusHistory">
                 <h4>Status History</h4>
                 <p>All status changes are logged.</p>
+                <hr>
                 <section id="History"></section>
             </section>
 
-            <section id="notificationTab">
+            <section class="notificationTab">
                 <h4>Notifications</h4>
                 <p>Log of changes to this customer</p>
                 <hr>
