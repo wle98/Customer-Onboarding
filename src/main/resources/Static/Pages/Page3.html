@@ -26,7 +26,7 @@
     <section class="managementOptions">
         <section id="left">
             <section class="onboardingStatusManagement">
-                <h4>Onboarding Status Management</h4>
+                <h3>Onboarding Status Management</h3>
                 <p>Check progress through onboarding lifecycle.</p>
                 <section id="onboardingStatus">
                     <section id="Status">
@@ -43,25 +43,25 @@
                             <option value="REJECTED">Rejected</option>
                         </select>
                         <input type="hidden" id="admin" value="admin">
-                        <button class="update" onclick="customerStatus(responseID,statusType,admin)">Change Status</button>
+                        <button onclick="customerStatus(responseID,statusType,admin)">Change Status</button>
                     </section>
 
                 </section>
             </section>
 
             <section class="onboardingActivityManagement">
-                <h2>Onboarding Activity Assignment</h2>
+                <h3>Onboarding Activity Assignment</h3>
                 <p>Assign and Delete onboarding tasks</p>
 
                 <section id="deleteActivity">
-                    <h3>Delete Customer Activity</h3>
+                    <h4>Delete Customer Activity</h4>
                     <label for="deleteID"></label>
                     <input type="text" id="deleteID" placeholder="Enter ID">
-                    <button class="update" onclick="deleteActivity(deleteID)">Delete Task</button>
+                    <button onclick="deleteActivity(deleteID)">Delete Task</button>
                 </section>
 
                 <section id="addActivity">
-                    <h3>Add Customer Activity</h3>
+                    <h4>Add Customer Activity</h4>
                         <section>
                             <label for="activityName">Activity</label>
                             <input type="text" name="activity Name" id="activityName">
@@ -86,7 +86,7 @@
                             </select>
                         </section>
                 </section>
-                <button class="update" onclick="addCustomerActivity(responseID,activityName,assignedTo,duedate,priority)">Add Activity</button>
+                <button onclick="addCustomerActivity(responseID,activityName,assignedTo,duedate,priority)">Add Activity</button>
                 <section id="ActivityList"></section>
             </section>
         </section>
@@ -121,12 +121,6 @@
     window.addEventListener('DOMContentLoaded', event => {
         pageLoad();
     });
-    const button = document.getElementsByClassName("button");
-    for(let i=0; button.length; i++){
-        button[i].addEventListener('click', event => {
-            location.reload();
-        });
-    }
 </script>
 <input type="hidden" id="responseID">
 
