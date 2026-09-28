@@ -5,4 +5,5 @@ async function pageLoad() {
     await customerGetSingle(id);
     await customerStatusHistory(id);
     await getCustomerActivity(id);
+    await customerNotifications(id);
 }
