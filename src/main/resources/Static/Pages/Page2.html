@@ -21,31 +21,31 @@
 
     <section class="uploadSection">
         <section class="documentUploadMultiple">
-            <script src="../Document/documentUpload.js"></script>
-            <script>
-                window.onload = function(){
-                    const value = localStorage.getItem('response');
-                    document.getElementById('responseID').setAttribute('value', value);
-                };
-            </script>
-            <input type="hidden" id="responseID">
 
             <section class="documentUpload">
                 <h4>Identification Document</h4>
                 <p>Government ID / Passport / Diver's License</p>
                 <input type="file" class="governmentID" id="governmentID">
-                <button onclick="documentUpload(responseID,'governmentID')">Upload</button>
+                <button id="upload" onclick="documentUpload(responseID,'governmentID')">Upload</button>
             </section>
 
             <section class="documentUpload">
                 <h4>Signed Agreement</h4>
                 <p>Customer Agreement / Contract Document</p>
                 <input type="file" class="agreement" id="agreement">
-                <button onclick="documentUpload(responseID,'agreement')">Upload</button>
+                <button id="upload1" onclick="documentUpload(responseID,'agreement')">Upload</button>
             </section>
 
             <section id="uploadedDocuments">
-                <h4 class="documentList">Uploaded Documents</h4>
+                <h3>Uploaded Documents</h3>
+                <section id="documentList"></section>
+            </section>
+
+            <section id="deleteDocument">
+                <h4>Delete Document</h4>
+                <label for="deleteID">Document Id</label>
+                <input type="text" id="deleteID" placeholder="Enter ID">
+                <button id="delete" onclick="documentDelete(deleteID)">Delete</button>
             </section>
 
         </section>
@@ -74,10 +74,22 @@
 
     <section class="Options">
         <button onclick="window.location.href='index.html'">Previous</button>
-        <button type="button">Save Draft</button>
         <button onclick="window.location.href='Page3.html'">Next</button>
     </section>
 </div>
 
 </body>
+
+<script src="../Document/documentUpload.js"></script>
+<script src="../Document/documentDelete.js"></script>
+<script src="../Document/documentbyCustomer.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', event =>{
+        const value = localStorage.getItem('response');
+        document.getElementById('responseID').setAttribute('value', value);
+        documentbyCustomer(responseID);
+    });
+</script>
+<input type="hidden" id="responseID">
+
 </html>

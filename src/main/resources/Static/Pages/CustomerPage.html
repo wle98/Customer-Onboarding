@@ -65,6 +65,7 @@
         <p id="customerName"></p>
         <p id="customerID"></p>
         <p id="registrationDate"></p>
+        <p id="StatusID"></p>
         <p id="customer"></p>
         <script src="../Customer/customerGetSingle.js"></script>
     </section>
@@ -107,8 +108,8 @@
 
     <section class="status">
         <h2>Status</h2>
-        <label for="statusID">Customer ID</label>
-        <input type="text" name="statusID" id="statusID">
+        <label for="customerStatusID">Customer ID</label>
+        <input type="text" name="customerStatusID" id="customerStatusID">
 
         <label for="statusType">Status</label>
         <select type="text" name="statusType" id="statusType">Status
@@ -122,7 +123,7 @@
         <label for="statusName">Status Name</label>
         <input type="text" name="statusName" id="statusName">
 
-        <button onclick="customerStatus(statusID,statusType,statusName)">Status</button>
+        <button onclick="customerStatus(customerStatusID,statusType,statusName)">Status</button>
         <p id="customerStatus"></p>
         <script src="../Customer/customerStatus.js"></script>
     </section>

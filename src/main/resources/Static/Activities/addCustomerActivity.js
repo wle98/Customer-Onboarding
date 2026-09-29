@@ -1,6 +1,7 @@
 async function addCustomerActivity(customerID,activityName,assignedTo,duedate,priority) {
 
     const ID = customerID.value;
+    const newID = ID.replaceAll('"','');
     const Activity = activityName.value;
     const Assignedto = assignedTo.value;
     const Duedate = duedate.value;
@@ -8,7 +9,7 @@ async function addCustomerActivity(customerID,activityName,assignedTo,duedate,pr
 
     const response = {"activityName": Activity, "assignedTo": Assignedto, "dueDate": Duedate, "priority": Priority};
 
-    fetch('/api/customers/activities/create/' + ID, {
+    fetch('/api/customers/activities/create/' + newID, {
         method: 'POST',
         body: JSON.stringify(response),
         headers: {
@@ -19,4 +20,5 @@ async function addCustomerActivity(customerID,activityName,assignedTo,duedate,pr
         .then(data => console.log(data))
         .catch(error => console.log(error));
 
+    location.reload();
 }

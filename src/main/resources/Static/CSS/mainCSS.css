@@ -52,7 +52,28 @@ section{
     justify-content: space-between;
 }
 
-.onboardingStatusManagement, .onboardingActivityManagement, .statusHistory, .notifications{
+#left{
+    width: 50%;
+    section{
+        padding:5px;
+    }
+    #addActivity{
+        align-items: start;
+    }
+    #changeStatus{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+#left, #right{
+    padding: 5px;
+}
+
+.onboardingStatusManagement, .onboardingActivityManagement, .statusHistory, .notificationTab{
+    hr{
+        width: 90%;
+    }
     h4, p{
         padding: 5px;
     }

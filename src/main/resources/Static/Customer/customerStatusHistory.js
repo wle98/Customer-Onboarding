@@ -11,8 +11,9 @@ async function customerStatusHistory(customerID) {
             return response.json();
         })
         .then(data => {
-            data.forEach(element => {const para = document.createElement("p");
-                const node = document.createTextNode((JSON.stringify(element.id)).replaceAll('"',''));
+            data.forEach(element => {
+                const para = document.createElement("p");
+                const node = document.createTextNode("Time: "+(JSON.stringify(element.changedAt)).replaceAll('"','')+" Status: "+(JSON.stringify(element.newStatus)).replaceAll('"',''));
                 para.appendChild(node);
                 document.getElementById('History').appendChild(para);});
         })

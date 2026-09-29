@@ -1,4 +1,4 @@
-function customerStatus(customerID,statusType,statusName){
+async function customerStatus(customerID,statusType,statusName){
 
     const ID = customerID.value;
     const newID = ID.replaceAll('"','');
@@ -15,6 +15,9 @@ function customerStatus(customerID,statusType,statusName){
         }
     })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            location.reload();
+        })
         .catch(error => console.log(error));
 }

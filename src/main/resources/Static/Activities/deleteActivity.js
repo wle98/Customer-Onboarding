@@ -7,4 +7,6 @@ async function deleteActivity(activityId) {
         .then(res => res.json())
         .then(res => console.log(res))
         .catch(error => console.log(error));
+
+    location.reload();
 }
