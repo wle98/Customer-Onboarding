@@ -11,10 +11,8 @@ function documentUpload(customerID,documentID){
         body: formdata})
         .then(response => response.json())
         .then(data => {
-            const para = document.createElement("p");
-            const node = document.createTextNode(JSON.stringify(data.fileName));
-            para.appendChild(node);
-            document.getElementById('uploadedDocuments').appendChild(para);
+            console.log(data);
+            location.reload();
         })
         .catch(error => console.log(error));
 
