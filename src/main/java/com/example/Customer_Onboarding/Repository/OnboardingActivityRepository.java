@@ -7,4 +7,5 @@ import java.util.UUID;
 
 public interface OnboardingActivityRepository extends JpaRepository<OnboardingActivity, UUID> {
     List<OnboardingActivity> findByCustomerId(UUID customerId);
+    void deleteByCustomerId(UUID customerId);
 }

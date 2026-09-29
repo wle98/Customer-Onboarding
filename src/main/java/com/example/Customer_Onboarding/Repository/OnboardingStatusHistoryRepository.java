@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface OnboardingStatusHistoryRepository extends JpaRepository<OnboardingStatusHistory, UUID> {
     List<OnboardingStatusHistory> findByCustomerIdOrderByChangedAtDesc(UUID customerId);
+    void deleteByCustomerId(UUID customerId);
 }

@@ -4,14 +4,23 @@ import com.example.Customer_Onboarding.DTO.CustomerRequest;
 import com.example.Customer_Onboarding.DTO.CustomerResponse;
 import com.example.Customer_Onboarding.DTO.StatusHistoryResponse;
 import com.example.Customer_Onboarding.Entity.Customer;
+import com.example.Customer_Onboarding.Entity.Document;
 import com.example.Customer_Onboarding.Entity.OnboardingStatus;
 import com.example.Customer_Onboarding.Entity.OnboardingStatusHistory;
 import com.example.Customer_Onboarding.Exception.DuplicateCustomerException;
 import com.example.Customer_Onboarding.Exception.ResourceNotFoundException;
 import com.example.Customer_Onboarding.Repository.CustomerRepository;
+import com.example.Customer_Onboarding.Repository.DocumentRepository;
+import com.example.Customer_Onboarding.Repository.NotificationRepository;
+import com.example.Customer_Onboarding.Repository.OnboardingActivityRepository;
 import com.example.Customer_Onboarding.Repository.OnboardingStatusHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +32,15 @@ public class CustomerService {
 
     @Autowired
     private OnboardingStatusHistoryRepository statusHistoryRepository;
+
+    @Autowired
+    private OnboardingActivityRepository activityRepository;
+
+    @Autowired
+    private DocumentRepository documentRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     @Autowired
     private NotificationService notificationService;
@@ -65,8 +83,23 @@ public class CustomerService {
         return toResponse(customerRepository.save(existing));
     }
 
+    @Transactional
     public void deleteCustomer(UUID id) {
         Customer existing = getCustomerById(id);
+
+        List<Document> documents = documentRepository.findByCustomerId(id);
+        for (Document document : documents) {
+            try {
+                Files.deleteIfExists(Paths.get(document.getFilePath()));
+            } catch (IOException e) {
+                // log and continue - don't block customer deletion over a missing/locked file
+            }
+        }
+
+        statusHistoryRepository.deleteByCustomerId(id);
+        activityRepository.deleteByCustomerId(id);
+        documentRepository.deleteByCustomerId(id);
+        notificationRepository.deleteByCustomerId(id);
         customerRepository.delete(existing);
     }
 
