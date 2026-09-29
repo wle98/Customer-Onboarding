@@ -5,7 +5,11 @@ async function documentDelete(documentID) {
     fetch('/api/documents/delete/' + ID, {
         method: 'DELETE',
     })
-        .then(response => response.json())
-        .then(data => console.log(data))
+        .then(response => {
+            console.log(response)
+            location.reload();
+        })
         .catch(error => console.log(error));
+
+
 }
