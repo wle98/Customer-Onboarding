@@ -18,8 +18,6 @@
     <p>Please provide the basic details of the customer</p>
     <hr>
 
-    <script src="../Customer/customerCreate.js"></script>
-    <script src="../Customer/customerDelete.js"></script>
     <form>
         <section class="customerID">
             <label for="customerName">Customer Name</label>
@@ -49,9 +47,8 @@
                 <input type="text" name="businessType" id="businessType">
             </section>
         </section>
-
-        <input type="hidden" id="response">
     </form>
+    <p id="errorMessage"></p>
         <hr>
         <section class="options">
             <button onclick="customerCreate(customerName,email,phone,address,businessType)">Save</button>
@@ -61,4 +58,15 @@
 </div>
 
 </body>
+
+<script>
+    window.addEventListener('DOMContentLoaded', event =>{
+        const value = localStorage.getItem('response');
+        document.getElementById('response').setAttribute('value', value);
+    });
+</script>
+<script src="../Customer/customerCreate.js"></script>
+<script src="../Customer/customerDelete.js"></script>
+<input type="hidden" id="response">
+
 </html>

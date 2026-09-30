@@ -38,6 +38,7 @@
 
             <button onclick="customerCreate(Name,email,phone,address,businessType)">Save</button>
         </form>
+        <input type="hidden" id="response">
     </section>
 
     <section class="DeleteForm">
@@ -66,7 +67,6 @@
         <p id="customerID"></p>
         <p id="registrationDate"></p>
         <p id="StatusID"></p>
-        <p id="customer"></p>
         <script src="../Customer/customerGetSingle.js"></script>
     </section>
 
@@ -102,7 +102,6 @@
             <button onclick="customerUpdate(updateID,updateName,updateEmail,updatePhone,updateAddress,updateType)">Save</button>
             <p id ="update"></p>
             <script src="../Customer/customerUpdate.js"></script>
-            <input type="hidden" id="response">
         </form>
     </section>
 
@@ -136,7 +135,10 @@
         <button onclick="customerStatusHistory(statusHistoryID)">Check Status</button>
         <p id="statusHistory"></p>
         <script src="../Customer/customerStatusHistory.js"></script>
+        <section id="History"></section>
     </section>
+
+    <p id="errorMessage"></p>
 
 </div>
 

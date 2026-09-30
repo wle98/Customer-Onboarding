@@ -1,5 +1,6 @@
 async function customerCreate(name, email, phone, address, businessType) {
 
+    document.getElementById('errorMessage').textContent = '';
     const Name = name.value;
     const Phone = phone.value;
     const Email = email.value;
@@ -15,10 +16,18 @@ async function customerCreate(name, email, phone, address, businessType) {
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            return Promise.reject(response);
+        })
         .then(data => {
             document.getElementById('response').setAttribute('value', JSON.stringify(data.id));
             localStorage.setItem('response', JSON.stringify(data.id));
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            document.getElementById('errorMessage').textContent = 'Please enter valid information';
+        });
 }

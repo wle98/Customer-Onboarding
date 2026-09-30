@@ -17,8 +17,9 @@ async function addCustomerActivity(customerID,activityName,assignedTo,duedate,pr
         }
     })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            location.reload();
+        })
         .catch(error => console.log(error));
-
-    location.reload();
 }

@@ -9,11 +9,20 @@ function documentUpload(customerID,documentID){
     fetch('/api/customers/documents/upload/'+newID,{
         method:'POST',
         body: formdata})
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                console.log(response);
+                location.reload();
+            }
+            return Promise.reject(response);
+        })
         .then(data => {
             console.log(data);
             location.reload();
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            document.getElementById('errorMessage').textContent = 'Please enter valid document';
+        });
 
 }

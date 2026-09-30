@@ -6,10 +6,16 @@ async function documentDelete(documentID) {
         method: 'DELETE',
     })
         .then(response => {
-            console.log(response)
-            location.reload();
+            if (response.ok) {
+                console.log(response);
+                location.reload();
+            }
+            return Promise.reject(response);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            document.getElementById('errorMessage').textContent = 'Please enter valid ID for deletion';
+        });
 
 
 }
