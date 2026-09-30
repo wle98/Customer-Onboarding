@@ -81,6 +81,19 @@ public class DocumentService {
         }
     }
 
+    public DocumentResponse updateDocumentStatus(UUID id, DocumentStatus newStatus) {
+        Document document = findDocumentOrThrow(id);
+
+        if (document.getStatus() == newStatus) {
+            return toResponse(document); // no duplicate notification
+        }
+
+        document.setStatus(newStatus);
+        Document saved = documentRepository.save(document);
+        notificationService.notifyDocumentReviewed(saved.getCustomer(), saved.getFileName(), newStatus);
+        return toResponse(saved);
+    }
+
     public List<DocumentResponse> getDocumentsByCustomer(UUID customerId) {
         customerService.getCustomerById(customerId);
         return documentRepository.findByCustomerId(customerId)

@@ -37,6 +37,11 @@ public class NotificationService {
                 "Document \"" + fileName + "\" was uploaded and is pending review.");
     }
 
+    public void notifyDocumentReviewed(Customer customer, String fileName, DocumentStatus status) {
+        send(customer, NotificationTriggerEvent.DOCUMENT_REVIEWED,
+                "Document \"" + fileName + "\" review complete: marked " + status + ".");
+    }
+
     public void notifyActivityAssigned(Customer customer, String activityName, String assignedTo) {
         send(customer, NotificationTriggerEvent.ACTIVITY_ASSIGNED,
                 "Activity \"" + activityName + "\" was assigned to " + assignedTo + ".");

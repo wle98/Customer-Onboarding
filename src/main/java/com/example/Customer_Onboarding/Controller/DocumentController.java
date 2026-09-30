@@ -1,6 +1,7 @@
 package com.example.Customer_Onboarding.Controller;
 
 import com.example.Customer_Onboarding.DTO.DocumentResponse;
+import com.example.Customer_Onboarding.Entity.DocumentStatus;
 import com.example.Customer_Onboarding.Service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,12 @@ public class DocumentController {
     @GetMapping("/api/documents/{id}")
     public ResponseEntity<DocumentResponse> getDocument(@PathVariable UUID id) {
         return ResponseEntity.ok(documentService.getDocumentById(id));
+    }
+
+    @PatchMapping("/api/documents/status/updateStatus/{id}")
+    public ResponseEntity<DocumentResponse> updateStatus(
+            @PathVariable UUID id, @RequestParam DocumentStatus status) {
+        return ResponseEntity.ok(documentService.updateDocumentStatus(id, status));
     }
 
     @DeleteMapping("/api/documents/delete/{id}")
