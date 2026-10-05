@@ -8,6 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +23,9 @@ public class NotificationService {
     @Autowired
     private NotificationRepository notificationRepository;
 
+    @Autowired
+    private JavaMailSender mailSender;
+
     // One entry point every trigger funnels through.
     // Swapping this to actually send email later only touches this method.
     private void send(Customer customer, NotificationTriggerEvent event, String message) {
@@ -28,8 +35,19 @@ public class NotificationService {
         notification.setMessage(message);
         notificationRepository.save(notification);
 
-        // Stand-in for real email sending until SMTP is wired up.
         logger.info("NOTIFICATION [{}] to {}: {}", event, customer.getEmail(), message);
+
+        try {
+            SimpleMailMessage email = new SimpleMailMessage();
+            email.setTo(customer.getEmail());
+            email.setSubject("Customer Onboarding Update");
+            email.setText(message);
+            mailSender.send(email);
+        } catch (MailException e) {
+            // Don't let a failed/slow email roll back the actual business action
+            // (document upload, status change, etc.) that triggered this notification.
+            logger.warn("Failed to send notification email to {}: {}", customer.getEmail(), e.getMessage());
+        }
     }
 
     public void notifyDocumentPendingUpload(Customer customer, String fileName) {

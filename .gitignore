@@ -41,3 +41,6 @@ application-prod.properties
 
 ### Document Uploading ###
 uploads/
+
+### Emails ###
+application-local.properties
