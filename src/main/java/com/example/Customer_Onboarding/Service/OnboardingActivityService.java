@@ -36,7 +36,8 @@ public class OnboardingActivityService {
         activity.setPriority(request.getPriority());
 
         OnboardingActivity saved = activityRepository.save(activity);
-        notificationService.notifyActivityAssigned(customer, saved.getActivityName(), saved.getAssignedTo());
+        notificationService.notifyActivityAssigned(customer, saved.getActivityName(), saved.getAssignedTo(),
+                saved.getDueDate(), saved.getPriority());
         return toResponse(saved);
     }
 

@@ -12,6 +12,8 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import java.time.LocalDate;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +25,7 @@ public class NotificationService {
     @Autowired
     private NotificationRepository notificationRepository;
 
-    @Autowired
+    @Autowired(required = false)
     private JavaMailSender mailSender;
 
     // One entry point every trigger funnels through.
@@ -36,6 +38,11 @@ public class NotificationService {
         notificationRepository.save(notification);
 
         logger.info("NOTIFICATION [{}] to {}: {}", event, customer.getEmail(), message);
+
+        if (mailSender == null) {
+            logger.info("Mail not configured, skipping email to {}", customer.getEmail());
+            return;
+        }
 
         try {
             SimpleMailMessage email = new SimpleMailMessage();
@@ -60,14 +67,18 @@ public class NotificationService {
                 "Document \"" + fileName + "\" review complete: marked " + status + ".");
     }
 
-    public void notifyActivityAssigned(Customer customer, String activityName, String assignedTo) {
+    public void notifyActivityAssigned(Customer customer, String activityName, String assignedTo,
+                                       LocalDate dueDate, ActivityPriority priority) {
         send(customer, NotificationTriggerEvent.ACTIVITY_ASSIGNED,
-                "Activity \"" + activityName + "\" was assigned to " + assignedTo + ".");
+                "Activity \"" + activityName + "\" was assigned to " + assignedTo
+                        + ". Due date: " + dueDate + ". Priority: " + priority + ".");
     }
 
-    public void notifyActivityOverdue(Customer customer, String activityName) {
+    public void notifyActivityOverdue(Customer customer, String activityName,
+                                      LocalDate dueDate, ActivityPriority priority) {
         send(customer, NotificationTriggerEvent.ACTIVITY_OVERDUE,
-                "Activity \"" + activityName + "\" is overdue.");
+                "Activity \"" + activityName + "\" is overdue. Due date: " + dueDate
+                        + ". Priority: " + priority + ".");
     }
 
     public void notifyStatusChanged(Customer customer, OnboardingStatus oldStatus, OnboardingStatus newStatus) {

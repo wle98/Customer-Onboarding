@@ -34,7 +34,8 @@ public class OverdueActivityScheduler {
             if (isPastDue && notAlreadyOverdue && notAlreadyDone) {
                 activity.setStatus(ActivityStatus.OVERDUE);
                 activityRepository.save(activity);
-                notificationService.notifyActivityOverdue(activity.getCustomer(), activity.getActivityName());
+                notificationService.notifyActivityOverdue(activity.getCustomer(), activity.getActivityName(),
+                        activity.getDueDate(), activity.getPriority());
             }
         }
     }
