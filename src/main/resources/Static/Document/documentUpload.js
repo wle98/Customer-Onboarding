@@ -1,28 +1,41 @@
-function documentUpload(customerID,documentID){
+async function documentUpload(customerID,documentID,documentType){
 
     const ID = customerID.value;
     const newID = ID.replaceAll('"','');
     const formdata = new FormData();
     formdata.append('file',document.getElementById(documentID).files[0]);
 
-
     fetch('/api/customers/documents/upload/'+newID,{
         method:'POST',
         body: formdata})
         .then(response => {
             if (response.ok) {
-                console.log(response);
-                location.reload();
+                return response.json()
+                    .then(data => {
+                        console.log(data);
+                        if(sessionStorage.getItem(documentType)==undefined){
+                            sessionStorage.setItem(documentType,'1');
+                        }
+                        else{
+                            let amount = parseInt(sessionStorage.getItem(documentType));
+                            amount+=1;
+                            sessionStorage.setItem(documentType,amount.toString());
+                        }
+                        let webID = data.id;
+                        sessionStorage.setItem(webID,documentType);
+                        location.reload();
+                    })
             }
-            return Promise.reject(response);
-        })
-        .then(data => {
-            console.log(data);
-            location.reload();
+            else{
+                return response.json()
+                    .then(data => {
+                        document.getElementById('errorMessage').innerText=data.message;
+                    })
+            }
         })
         .catch(error => {
             console.log(error);
-            document.getElementById('errorMessage').textContent = 'Please enter valid document';
+            document.getElementById('errorMessage').textContent = 'Major Error';
         });
 
 }

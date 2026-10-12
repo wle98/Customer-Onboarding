@@ -20,6 +20,7 @@
         <p id="customerID"></p>
         <p id="registrationDate"></p>
     </section>
+    <p id="errorMessage"></p>
 
     <hr>
 
@@ -52,14 +53,7 @@
             <section class="onboardingActivityManagement">
                 <h3>Onboarding Activity Assignment</h3>
                 <p>Assign and Delete onboarding tasks</p>
-                <p id="errorMessage"></p>
-
-                <section id="deleteActivity">
-                    <h4>Delete Customer Activity</h4>
-                    <label for="deleteID"></label>
-                    <input type="text" id="deleteID" placeholder="Enter ID">
-                    <button onclick="deleteActivity(deleteID)">Delete Task</button>
-                </section>
+                <section id="activityError"></section>
 
                 <section id="addActivity">
                     <h4>Add Customer Activity</h4>
@@ -88,7 +82,19 @@
                         </section>
                 </section>
                 <button onclick="addCustomerActivity(responseID,activityName,assignedTo,duedate,priority)">Add Activity</button>
-                <section id="ActivityList"></section>
+                <table id="table">
+                    <tr>
+                        <th>Activity Name</th>
+                        <th>Assigned To</th>
+                        <th>Due Date</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </table>
+                <button onclick="prevPage('table','pageSpan')" class="prev" disabled>Prev</button>
+                <button onclick="nextPage('table','pageSpan')" class="next">Next</button>
+                <span id="pageSpan"></span>
             </section>
         </section>
 
@@ -97,7 +103,17 @@
                 <h4>Status History</h4>
                 <p>All status changes are logged.</p>
                 <hr>
-                <section id="History"></section>
+                <p id="historyError"></p>
+                <table id="table1">
+                    <tr>
+                        <th>Status</th>
+                        <th>Updated By</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </table>
+                <button onclick="prevPage('table1','pageSpan1')" class="prev" disabled>Prev</button>
+                <button onclick="nextPage('table1','pageSpan1')" class="next">Next</button>
+                <span id="pageSpan1"></span>
             </section>
 
             <section class="notificationTab">
@@ -133,5 +149,6 @@
 <script src="../Activities/deleteActivity.js"></script>
 <script src="../otherJS/customerNotifications.js"></script>
 <script src="../otherJS/pageLoad.js"></script>
+<script src="../otherJS/tablePages.js"></script>
 
 </html>

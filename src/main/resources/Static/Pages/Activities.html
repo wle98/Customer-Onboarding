@@ -13,9 +13,19 @@
     <label for="customerID">Customer Id</label>
     <input type="text" name="customerID" id="customerID">
     <button onclick="getCustomerActivity(customerID)">Get Activities</button>
-    <p id="getActivities"></p>
-
-    <script src="../Activities/getCustomerActivity.js"></script>
+    <table id="table">
+      <tr>
+        <th>Activity Name</th>
+        <th>Assigned To</th>
+        <th>Due Date</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </table>
+    <button onclick="prevPage('table','pageSpan')" class="prev" disabled>Prev</button>
+    <button onclick="nextPage('table','pageSpan')" class="next">Next</button>
+    <span id="pageSpan"></span>
   </section>
 
   <section class="updateActivity">
@@ -42,7 +52,6 @@
     </form>
 
     <button onclick="updateActivity(activityIDUpdate,activityNameUpdate,activityAssignedToUpdate,DueDateUpdate,activityPriorityUpdate)">Update Activity</button>
-    <script src="../Activities/updateActivity.js"></script>
   </section>
 
   <section class="deleteActivity">
@@ -51,7 +60,6 @@
     <input type="text" name="deleteID" id="deleteID">
 
     <button onclick="deleteActivity(deleteID)">Delete Activity</button>
-    <script src="../Activities/deleteActivity.js"></script>
   </section>
 
   <section class="getActivity">
@@ -60,8 +68,6 @@
     <input type="text" name="referenceActivityID" id="referenceActivityID">
     <button onclick="getActivity(referenceActivityID)">Get Activity</button>
     <p id="getActivityBy"></p>
-
-    <script src="../Activities/getActivity.js"></script>
   </section>
 
   <section class="addCustomerActivity">
@@ -86,10 +92,9 @@
         <option value="HIGH">High</option>
       </select>
     </form>
-    <section id="ActivityList"></section>
 
     <button onclick="addCustomerActivity(newCustomerID,activityName,assignedTo,duedate,priority)">Add</button>
-    <script src="../Activities/addCustomerActivity.js"></script>
+
   </section>
 
   <section class="changeCustomerActivityStatus">
@@ -108,14 +113,23 @@
       </select>
 
       <button onclick="changeCustomerActivityStatus(activityID,activityStatus)">Change</button>
-      <script src="../Activities/changeCustomerActivityStatus.js"></script>
     </form>
 
   </section>
 
-  <p id="errorMessage"></p>
+  <section id="errorMessage"></section>
+  <section id="activityError"></section>
 
 </div>
 
 </body>
+
+<script src="../Activities/getCustomerActivity.js"></script>
+<script src="../Activities/updateActivity.js"></script>
+<script src="../Activities/deleteActivity.js"></script>
+<script src="../Activities/getActivity.js"></script>
+<script src="../Activities/addCustomerActivity.js"></script>
+<script src="../Activities/changeCustomerActivityStatus.js"></script>
+<script src="../otherJS/tablePages.js"></script>
+
 </html>

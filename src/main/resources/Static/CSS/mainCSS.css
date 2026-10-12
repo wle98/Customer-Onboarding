@@ -1,4 +1,5 @@
 body{
+    font-family: Arial, Helvetica, sans-serif;
     background-color: #e8eded;
     width: 80%;
     margin: 10px auto;
@@ -31,6 +32,9 @@ section{
         border-radius: 15px;
         border: 1px solid #ece8e8;
     }
+    .documentUploadMultiple{
+        width: 66%;
+    }
     .documentUpload{
         margin-bottom: 10px;
     }
@@ -47,12 +51,28 @@ section{
     justify-content: space-between;
 }
 
+table{
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #d6d6d6;
+    border-radius: 10px;
+    border-spacing: 0;
+    /*border-collapse: collapse;*/
+    th{
+        background-color: #d6d6d6;
+        margin:5px;
+    }
+    th,td{
+        border-top: 1px solid #d6d6d6;
+    }
+}
+
 #customer{
     display: flex;
     justify-content: space-between;
 }
 
-#left{
+#left, #right{
     width: 50%;
     section{
         padding:5px;
@@ -68,6 +88,7 @@ section{
 
 #left, #right{
     padding: 5px;
+    width: 100%;
 }
 
 .onboardingStatusManagement, .onboardingActivityManagement, .statusHistory, .notificationTab{

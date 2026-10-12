@@ -1,7 +1,6 @@
 async function deleteActivity(activityId) {
-    const ID = activityId.value;
 
-    fetch('/api/activities/delete/' + ID, {
+    fetch('/api/activities/delete/' + activityId, {
         method: 'DELETE',
     })
         .then(response => {
@@ -9,11 +8,15 @@ async function deleteActivity(activityId) {
                 console.log(response);
                 location.reload();
             }
-            return Promise.reject(response);
+            else {
+                return response.json()
+                    .then(data => {
+                        document.getElementById('activityError').textContent = data.message;
+                    })
+            }
         })
-        .then(res => console.log(res))
         .catch(error => {
             console.log(error);
-            document.getElementById('errorMessage').textContent = 'Please enter valid ID for deletion';
+            document.getElementById('activityError').textContent = 'Major Error';
         });
 }

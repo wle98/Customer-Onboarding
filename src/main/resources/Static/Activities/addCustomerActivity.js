@@ -1,5 +1,6 @@
 async function addCustomerActivity(customerID,activityName,assignedTo,duedate,priority) {
 
+    document.getElementById('activityError').textContent = '';
     const ID = customerID.value;
     const newID = ID.replaceAll('"','');
     const Activity = activityName.value;
@@ -16,10 +17,30 @@ async function addCustomerActivity(customerID,activityName,assignedTo,duedate,pr
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            location.reload();
+        .then(response => {
+            if (response.ok) {
+                location.reload();
+            }
+            else {
+                return response.json()
+                    .then(data => {
+                        try{
+                            let errors = data.errors;
+                            Object.keys(errors).forEach(key => {
+                                const para = document.createElement("p");
+                                const node = document.createTextNode(errors[key]);
+                                para.appendChild(node);
+                                document.getElementById('activityError').appendChild(para);
+                            })
+                        }
+                        catch(err){
+                            const para = document.createElement("p");
+                            const node = document.createTextNode(data.message);
+                            para.appendChild(node);
+                            document.getElementById('activityError').appendChild(para);
+                        }
+                    })
+            }
         })
         .catch(error => console.log(error));
 }

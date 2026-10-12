@@ -18,16 +18,37 @@ async function customerCreate(name, email, phone, address, businessType) {
     })
         .then(response => {
             if (response.ok) {
-                return response.json();
+                return response.json()
+                    .then(data => {
+                        document.getElementById('response').setAttribute('value', JSON.stringify(data.id));
+                        sessionStorage.setItem('response', JSON.stringify(data.id));
+                        document.getElementById('nextPage').disabled = false;
+                        document.getElementById('cancel').disabled = false;
+                    })
             }
-            return Promise.reject(response);
-        })
-        .then(data => {
-            document.getElementById('response').setAttribute('value', JSON.stringify(data.id));
-            localStorage.setItem('response', JSON.stringify(data.id));
+            else{
+                return response.json()
+                    .then(data => {
+                        try{
+                            let errors = data.errors;
+                            Object.keys(errors).forEach(key => {
+                                const para = document.createElement("p");
+                                const node = document.createTextNode(errors[key]);
+                                para.appendChild(node);
+                                document.getElementById('errorMessage').appendChild(para);
+                            })
+                        }
+                        catch(err){
+                            const para = document.createElement("p");
+                            const node = document.createTextNode(data.message);
+                            para.appendChild(node);
+                            document.getElementById('errorMessage').appendChild(para);
+                        }
+                    })
+            }
         })
         .catch(error => {
             console.log(error);
-            document.getElementById('errorMessage').textContent = 'Please enter valid information';
+            document.getElementById('errorMessage').textContent = 'There was an error creating customer';
         });
 }

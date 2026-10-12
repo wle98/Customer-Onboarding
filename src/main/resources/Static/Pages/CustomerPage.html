@@ -8,6 +8,10 @@
 
 <div>
 
+    <button id="nextPage" disabled>Next</button>
+    <button id="cancel" disabled>Cancel</button>
+    <section id="errorMessage"></section>
+
     <section class="CreationForm">
         <h2>Customer Creation</h2>
 
@@ -36,7 +40,7 @@
                 <input type="text" name="businessType" id="businessType">
             </section>
 
-            <button onclick="customerCreate(Name,email,phone,address,businessType)">Save</button>
+            <button type="button" onclick="customerCreate(Name,email,phone,address,businessType)">Save</button>
         </form>
         <input type="hidden" id="response">
     </section>
@@ -47,7 +51,7 @@
         <form>
             <label for="deleteID">Customer ID</label>
             <input type="text" name="deleteID" id="deleteID">
-            <button onclick="customerDelete(deleteID)">Delete</button>
+            <button type="button" onclick="customerDelete(deleteID)">Delete</button>
         </form>
     </section>
 
@@ -135,10 +139,15 @@
         <button onclick="customerStatusHistory(statusHistoryID)">Check Status</button>
         <p id="statusHistory"></p>
         <script src="../Customer/customerStatusHistory.js"></script>
-        <section id="History"></section>
-    </section>
 
-    <p id="errorMessage"></p>
+        <table id="historyTable">
+            <tr>
+                <th>Status</th>
+                <th>Updated By</th>
+                <th>Timestamp</th>
+            </tr>
+        </table>
+    </section>
 
 </div>
 

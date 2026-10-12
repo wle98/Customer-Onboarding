@@ -26,26 +26,14 @@
                 <h4>Identification Document</h4>
                 <p>Government ID / Passport / Diver's License</p>
                 <input type="file" class="governmentID" id="governmentID">
-                <button id="upload" onclick="documentUpload(responseID,'governmentID')">Upload</button>
+                <button id="upload" onclick="documentUpload(responseID,'governmentID','IDcount')">Upload</button>
             </section>
 
             <section class="documentUpload">
                 <h4>Signed Agreement</h4>
                 <p>Customer Agreement / Contract Document</p>
                 <input type="file" class="agreement" id="agreement">
-                <button id="upload1" onclick="documentUpload(responseID,'agreement')">Upload</button>
-            </section>
-
-            <section id="uploadedDocuments">
-                <h3>Uploaded Documents</h3>
-                <section id="documentList"></section>
-            </section>
-
-            <section id="deleteDocument">
-                <h4>Delete Document</h4>
-                <label for="deleteID">Document Id</label>
-                <input type="text" id="deleteID" placeholder="Enter ID">
-                <button id="delete" onclick="documentDelete(deleteID)">Delete</button>
+                <button id="upload1" onclick="documentUpload(responseID,'agreement','agreementCount')">Upload</button>
             </section>
 
             <p id="errorMessage"></p>
@@ -53,8 +41,8 @@
         </section>
 
         <section class="uploadRules">
-            <h3>Validation Rules</h3>
-            <h4>Allowed Formats</h4>
+            <h4>Validation Rules</h4>
+            <p>Allowed Formats</p>
             <ul>
                 <li>PDF</li>
                 <li>JPG</li>
@@ -72,11 +60,28 @@
         </section>
     </section>
 
+    <section id="uploadedDocuments">
+        <h3>Uploaded Documents</h3>
+        <section id="documentList"></section>
+        <table id="table">
+            <tr>
+                <th>File Name</th>
+                <th>Document Type</th>
+                <th>File Size</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </table>
+        <button onclick="prevPage('table','pageSpan')" class="prev" disabled>Prev</button>
+        <button onclick="nextPage('table','pageSpan')" class="next">Next</button>
+        <span id="pageSpan"></span>
+    </section>
+
     <hr>
 
     <section class="Options">
         <button onclick="window.location.href='index.html'">Previous</button>
-        <button onclick="window.location.href='Page3.html'">Next</button>
+        <button id="nextPage" disabled onclick="window.location.href='Page3.html'">Next</button>
     </section>
 </div>
 
@@ -85,11 +90,15 @@
 <script src="../Document/documentUpload.js"></script>
 <script src="../Document/documentDelete.js"></script>
 <script src="../Document/documentbyCustomer.js"></script>
+<script src="../otherJS/tablePages.js"></script>
 <script>
     window.addEventListener('DOMContentLoaded', event =>{
-        const value = localStorage.getItem('response');
+        const value = sessionStorage.getItem('response');
         document.getElementById('responseID').setAttribute('value', value);
         documentbyCustomer(responseID);
+        if(parseInt(sessionStorage.getItem('IDcount'))>=1&&parseInt(sessionStorage.getItem('agreementCount'))>=1){
+            document.getElementById('nextPage').disabled=false;
+        }
     });
 </script>
 <input type="hidden" id="responseID">
