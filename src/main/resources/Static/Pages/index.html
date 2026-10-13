@@ -51,9 +51,13 @@
     <section id="errorMessage"></section>
         <hr>
         <section class="options">
-            <button onclick="customerCreate(customerName,email,phone,address,businessType)">Save</button>
-            <button id="cancel" disabled onclick="customerDelete(response)">Cancel</button>
-            <button id="nextPage" disabled onclick="window.location.href=`Page2.html`">Next</button>
+            <section>
+                <button id="save" onclick="customerCreate(customerName,email,phone,address,businessType)">Save</button>
+            </section>
+            <section>
+                <button id="cancel" disabled onclick="customerDelete(response)">Cancel</button>
+                <button id="nextPage" disabled onclick="window.location.href=`Page2.html`">Next</button>
+            </section>
         </section>
 </div>
 

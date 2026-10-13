@@ -35,7 +35,7 @@ function nextPage(table,span){
     }
     let currentPage = parseInt(sessionStorage.getItem(table));
     currentPage++;
-    if(currentPage==numPages(document.getElementById(table).rows.length)){
+    if(currentPage>=numPages(document.getElementById(table).rows.length)){
         buttonNext[i].disabled = true;
         buttonPrev[i].disabled = false;
     }

@@ -29,7 +29,12 @@ async function documentUpload(customerID,documentID,documentType){
             else{
                 return response.json()
                     .then(data => {
-                        document.getElementById('errorMessage').innerText=data.message;
+                        if(data.message=='An unexpected error occurred'){
+                            document.getElementById('errorMessage').innerText=data.message+'. Please choose a file to upload';
+                        }
+                        else{
+                            document.getElementById('errorMessage').innerText=data.message;
+                        }
                     })
             }
         })

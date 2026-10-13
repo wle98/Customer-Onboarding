@@ -9,6 +9,7 @@ async function customerDelete(deleteId) {
     })
         .then(response => {
             if (response.ok){
+                sessionStorage.removeItem('response');
                 document.getElementById('cancel').disabled = true;
                 document.getElementById('nextPage').disabled = true;
                 return response.json();

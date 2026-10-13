@@ -31,11 +31,11 @@
                 <p>Check progress through onboarding lifecycle.</p>
                 <section id="onboardingStatus">
                     <section id="Status">
-                        <h4>Status</h4>
+                        <h4>Current Status</h4>
                         <p id="StatusID"></p>
                     </section>
                     <section id="changeStatus">
-                        <label for="statusType">Change Status</label>
+                        <label id="statusLabel" for="statusType">Status</label>
                         <select id="statusType">
                             <option value="NEW">New</option>
                             <option value="IN_PROGRESS">In Progress</option>
@@ -44,9 +44,10 @@
                             <option value="REJECTED">Rejected</option>
                         </select>
                         <input type="hidden" id="admin" value="admin">
-                        <button onclick="customerStatus(responseID,statusType,admin)">Change Status</button>
                     </section>
-
+                    <section>
+                        <button id="statusButton" onclick="customerStatus(responseID,statusType,admin)">Change Status</button>
+                    </section>
                 </section>
             </section>
 
@@ -58,17 +59,17 @@
                 <section id="addActivity">
                     <h4>Add Customer Activity</h4>
                         <section>
-                            <label for="activityName">Activity</label>
+                            <label id="activityNameLabel" for="activityName">Activity</label>
                             <input type="text" name="activity Name" id="activityName">
                         </section>
 
                         <section>
-                            <label for="assignedTo">Assigned To</label>
+                            <label id="assignedToLabel" for="assignedTo">Assigned To</label>
                             <input type="text" name="assigned To" id="assignedTo">
                         </section>
 
                         <section>
-                            <label for="duedate">Duedate</label>
+                            <label id="duedateLabel" for="duedate">Duedate</label>
                             <input type="date" name="due date" id="duedate">
                         </section>
 
@@ -80,8 +81,9 @@
                                 <option value="HIGH">High</option>
                             </select>
                         </section>
+                    <button id="addActivityButton" onclick="addCustomerActivity(responseID,activityName,assignedTo,duedate,priority)">Add</button>
                 </section>
-                <button onclick="addCustomerActivity(responseID,activityName,assignedTo,duedate,priority)">Add Activity</button>
+                <button id="showActivityButton" onclick="showAddActivity()">Add Activity</button>
                 <table id="table">
                     <tr>
                         <th>Activity Name</th>
@@ -92,10 +94,12 @@
                         <th>Actions</th>
                     </tr>
                 </table>
-                <button onclick="prevPage('table','pageSpan')" class="prev" disabled>Prev</button>
-                <button onclick="nextPage('table','pageSpan')" class="next">Next</button>
-                <span id="pageSpan"></span>
-            </section>
+                <section class="tableButtons">
+                    <button onclick="prevPage('table','pageSpan')" class="prev" disabled><</button>
+                    <span id="pageSpan"></span>
+                    <button onclick="nextPage('table','pageSpan')" class="next">></button>
+                </section>
+                </section>
         </section>
 
         <section id="right">
@@ -111,9 +115,11 @@
                         <th>Timestamp</th>
                     </tr>
                 </table>
-                <button onclick="prevPage('table1','pageSpan1')" class="prev" disabled>Prev</button>
-                <button onclick="nextPage('table1','pageSpan1')" class="next">Next</button>
-                <span id="pageSpan1"></span>
+                <section class="tableButtons">
+                    <button onclick="prevPage('table1','pageSpan1')" class="prev" disabled><</button>
+                    <span id="pageSpan1"></span>
+                    <button onclick="nextPage('table1','pageSpan1')" class="next">></button>
+                </section>
             </section>
 
             <section class="notificationTab">
@@ -127,8 +133,8 @@
 
     <hr>
 
-    <section class="Options">
-        <button onclick="window.location.href='Page2.html'">Previous</button>
+    <section class="options">
+        <button id="previous" onclick="window.location.href='Page2.html'">Previous</button>
     </section>
 </div>
 
@@ -137,6 +143,7 @@
 <script>
     window.addEventListener('DOMContentLoaded', event => {
         pageLoad();
+        showAddActivity();
     });
 </script>
 <input type="hidden" id="responseID">
@@ -150,5 +157,6 @@
 <script src="../otherJS/customerNotifications.js"></script>
 <script src="../otherJS/pageLoad.js"></script>
 <script src="../otherJS/tablePages.js"></script>
+<script src="../otherJS/showAddActivity.js"></script>
 
 </html>

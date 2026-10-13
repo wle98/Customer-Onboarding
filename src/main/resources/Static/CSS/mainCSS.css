@@ -1,3 +1,4 @@
+/*Shared by all pages*/
 body{
     font-family: Arial, Helvetica, sans-serif;
     background-color: #e8eded;
@@ -14,8 +15,89 @@ div{
     padding:20px;
 }
 
+#errorMessage,#activityError{
+    color: red;
+}
+
+.options{
+    display: flex;
+    justify-content: space-between;
+    button{
+        padding: 8px 28px;
+    }
+}
+#save,#previous,#cancel,#showActivityButton{
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: white;
+    color: blue;
+}
+#save:disabled,#previous:disabled,#cancel:disabled{
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: gray;
+    color: white;
+}
+#nextPage,#statusButton,#addActivityButton{
+    border: 1px solid blue;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+}
+#nextPage:disabled{
+    border: 1px solid #9e9ee3;
+    border-radius: 5px;
+    background-color: #9e9ee3;
+    color: white;
+}
+
+.tableButtons{
+    display: flex;
+    justify-content: end;
+    .prev,.next{
+        margin: 2px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        background-color: white;
+        color: blue;
+    }
+    .prev:disabled,.next:disabled{
+        border: 1px solid #d6d6d6;
+        border-radius: 5px;
+        background-color: #d6d6d6;
+        color: white;
+    }
+}
+
+table{
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #d6d6d6;
+    border-radius: 10px;
+    border-spacing: 0;
+    margin: 5px;
+    th{
+        background-color: #d6d6d6;
+        margin:5px;
+    }
+    th,td{
+        border-top: 1px solid #d6d6d6;
+    }
+}
+
 section{
     padding:5px;
+}
+
+/*Page 1*/
+.dataInput{
+    input[required], label:after{
+        content: '*';
+        color:red;
+    }
+    input,label{
+        display: block;
+    }
 }
 
 .inputTwice, .managementOptions{
@@ -26,7 +108,12 @@ section{
     justify-content: space-between;
 }
 
+/*Page 2*/
 .uploadSection{
+    input[required], label:after{
+        content: '*';
+        color:red;
+    }
     .documentUpload, .uploadRules{
         padding:5px;
         border-radius: 15px;
@@ -39,6 +126,7 @@ section{
         margin-bottom: 10px;
     }
     .uploadRules{
+        margin-top: 5px;
         width: 33%;
         hr{
             width: 90%;
@@ -49,49 +137,58 @@ section{
     }
     display: flex;
     justify-content: space-between;
-}
-
-table{
-    width: 100%;
-    overflow: hidden;
-    border: 1px solid #d6d6d6;
-    border-radius: 10px;
-    border-spacing: 0;
-    /*border-collapse: collapse;*/
-    th{
-        background-color: #d6d6d6;
-        margin:5px;
-    }
-    th,td{
-        border-top: 1px solid #d6d6d6;
+    #fileSize{
+        border-radius: 15px;
+        border: 1px solid blue;
+        background-color: #f5fcff;
     }
 }
 
+/*Page 3*/
 #customer{
     display: flex;
     justify-content: space-between;
 }
 
-#left, #right{
-    width: 50%;
-    section{
-        padding:5px;
-    }
-    #addActivity{
-        align-items: start;
-    }
-    #changeStatus{
-        display: flex;
-        justify-content: space-between;
-    }
+#left{
+    width: 60%;
+}
+#right{
+    width: 40%
 }
 
 #left, #right{
     padding: 5px;
-    width: 100%;
+    section{
+        padding:5px;
+    }
+    #Status{
+        border-radius: 15px;
+        border: 1px solid blue;
+        background-color: #f5fcff;
+    }
+    #changeStatus{
+        input,label{
+            display: block;
+        }
+        button{
+            align-self: flex-end;
+        }
+    }
+    #addActivity{
+        align-items: start;
+    }
+    table{
+        margin-left:auto;
+        margin-right:auto;
+    }
 }
 
 .onboardingStatusManagement, .onboardingActivityManagement, .statusHistory, .notificationTab{
+    input[required], #statusLabel:after,#activityNameLabel:after,#assignedToLabel:after,#duedateLabel:after{
+        content: '*';
+        color:red;
+    }
     hr{
         width: 90%;
     }
@@ -101,4 +198,21 @@ table{
     border-radius: 15px;
     border: 1px solid #ece8e8;
     margin-bottom: 10px;
+}
+
+#onboardingStatus{
+    display: flex;
+    justify-content: space-between;
+    section{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    button{
+        padding: 5px;
+    }
+}
+
+#addActivity{
+    display: none;
 }
